@@ -58,7 +58,7 @@ export default {
         ],
         phone: [
           { required: true, message: "手机不能为空" },
-          { pattern: /^1[3,5,6,7,8]\d{9}$/, message: "手机号格式不正确" },
+          { pattern: /^1\d{10}$/, message: "手机号格式不正确" },
           { validator: this.validatePhone }
         ],
         pwd: [

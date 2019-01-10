@@ -32,7 +32,7 @@ export default {
       login_rules: {
         phone: [
           { required: true, message: "手机不能为空" },
-          { pattern: /^1[3,5,6,7,8]\d{9}$/, message: "手机号格式不正确" }
+          { pattern: /^1\d{10}$/, message: "手机号格式不正确" }
         ],
         pwd: [
           { required: true, message: "密码不能为空" },
@@ -60,7 +60,7 @@ export default {
                 this.$alert("对不起您的账户正在审核中,请联系管理员", "消息");
               } else if (data[0].status == 1) {
                 //   console.log("登录成功");
-                this.$router.push("/login");
+                this.$router.push("/manage");
               }
             } else {
               this.$alert("登录失败，没有此账户", "消息");
