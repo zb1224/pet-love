@@ -6,7 +6,6 @@ import Register from "../components/register";
 
 import Manage from '../components/manage';
 
-import Supplier from '../components/supplier';
 import SupplierInfo from "../components/supplierInfo";
 import SupplierCom from '../components/supplierCom';
 
@@ -27,17 +26,11 @@ export default new VueRouter({
         path: "/manage",
         component: Manage,
         children: [{
-            path: "/manage/supplier",
-            component: Supplier,
-            children: [{
-                    path: "/manage/supplier/supplierInfo",
-                    component: SupplierInfo
-                },
-                {
-                    path: '/manage/supplier/supplierCom',
-                    component: SupplierCom,
-                },
-            ]
-        }]
+            path: "/manage/supplierInfo",
+            component: SupplierInfo,
+        }, {
+            path: '/manage/supplierCom',
+            component: SupplierCom,
+        }, ]
     }]
 });

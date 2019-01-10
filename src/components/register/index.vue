@@ -65,7 +65,10 @@ export default {
           { required: true, message: "密码不能为空" },
           { pattern: /^\d{4,16}$/, message: "密码是4到16位数字" }
         ],
-        confirm: [{ validator: this.validateConfirm }],
+        confirm: [
+          { required: true, message: "确认密码不能为空" },
+          { validator: this.validateConfirm }
+        ],
         email: [
           { required: true, message: "邮箱不能为空" },
           {
