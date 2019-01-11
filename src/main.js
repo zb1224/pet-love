@@ -3,9 +3,9 @@ import App from './App.vue';
 
 import router from './router';
 import store from './store'
-
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+Vue.config.productionTip = false
 Vue.use(ElementUI);
 import {
   Pagination,
@@ -150,13 +150,6 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
-
-import store from "./store"
-Vue.config.productionTip = false
-Vue.use(ElementUI);
-
-Vue.use(ElementUI);
-
 new Vue({
   store,
   router,

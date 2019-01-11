@@ -17,9 +17,10 @@
               <i class="el-icon-message"></i>
               <span>平台管理</span>
             </template>
-            <el-menu-item index>用户管理</el-menu-item>
-            <el-menu-item index>宠主管理</el-menu-item>
-            <el-menu-item index>门店管理</el-menu-item>
+            <el-menu-item index="/manage/users">用户管理</el-menu-item>
+            <el-menu-item index="/manage/petMaster">宠主管理</el-menu-item>
+            <el-menu-item index="/manage/shop">门店管理</el-menu-item>
+             <el-menu-item index="/manage/supplier">供应商管理</el-menu-item>
             <el-menu-item index>统计</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
