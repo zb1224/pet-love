@@ -58,7 +58,7 @@ export default {
                 methos: "get",
                 url: "/supplierCom/" + id
             }).then(({ data }) => {
-                console.log("商品个体",data)
+                // console.log("商品个体",data);
                 commit('setSupplierCom', data)
             })
         },

@@ -40,7 +40,7 @@
             <el-menu-item index>商品管理</el-menu-item>
             <el-menu-item index>选择供应商货品</el-menu-item>
             <el-menu-item index>服务管理</el-menu-item>
-            <el-menu-item index>订单管理</el-menu-item>
+            <el-menu-item index="/manage/shopOrders">订单管理</el-menu-item>
             <el-menu-item index>统计</el-menu-item>
           </el-submenu>
         </el-menu>

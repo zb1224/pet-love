@@ -9,6 +9,8 @@ import Manage from '../components/manage';
 import SupplierInfo from "../components/supplierInfo";
 import SupplierCom from '../components/supplierCom';
 
+import shopOrders from "../components/shopOrders";
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -31,6 +33,9 @@ export default new VueRouter({
         }, {
             path: '/manage/supplierCom',
             component: SupplierCom,
+        }, {
+            path: '/manage/shopOrders',
+            component: shopOrders,
         }, ]
     }]
 });
