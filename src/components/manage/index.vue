@@ -17,21 +17,22 @@
               <i class="el-icon-message"></i>
               <span>平台管理</span>
             </template>
-            <el-menu-item index="/manage/users">用户管理</el-menu-item>
-            <el-menu-item index="/manage/petMaster">宠主管理</el-menu-item>
-            <el-menu-item index="/manage/shop">门店管理</el-menu-item>
-            <el-menu-item index="/manage/supplier">供应商管理</el-menu-item>
-            <el-menu-item index="/manage/cityStatistics">统计</el-menu-item>
-            <el-menu-item index="/manage/platFormMap">地图</el-menu-item>
+            <el-menu-item index="/manage/platform/users">用户管理</el-menu-item>
+            <el-menu-item index="/manage/platform/petMaster">宠主管理</el-menu-item>
+            <el-menu-item index="/manage/platform/shop">门店管理</el-menu-item>
+            <el-menu-item index="/manage/platform/supplier">供应商管理</el-menu-item>
+            <el-menu-item index="/manage/platform/cityStatistics">城市统计</el-menu-item>
+            <el-menu-item index="/manage/platfrom/saleStatistics">销量统计</el-menu-item>
+            <el-menu-item index="/manage/platform/platFormMap">地图</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-message"></i>
               <span>供应商管理</span>
             </template>
-            <el-menu-item index="/manage/supplierInfo">供应商信息</el-menu-item>
-            <el-menu-item index="/manage/supplierCom">供应商货品管理</el-menu-item>
-            <el-menu-item index="/manage/supplierStat">统计</el-menu-item>
+            <el-menu-item index="/manage/suppliers/supplierInfo">供应商信息</el-menu-item>
+            <el-menu-item index="/manage/suppliers/supplierCom">供应商货品管理</el-menu-item>
+            <el-menu-item index="/manage/suppliers/supplierStat">统计</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
