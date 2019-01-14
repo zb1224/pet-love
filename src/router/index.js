@@ -9,6 +9,8 @@ import Users from "../components/manage/users"
 import Shop from "../components/manage/shop"
 import PetMaster from "../components/manage/petMaster"
 import Supplier from "../components/manage/supplier"
+import CityStatistics from "../components/manage/platFormStatistics/cityStatistics"
+import PlatFormMap from "../components/manage/platFormStatistics/platFormMap"
 
 import SupplierInfo from "../components/supplierInfo";
 import SupplierCom from '../components/supplierCom';
@@ -51,6 +53,15 @@ export default new VueRouter({
         {
             path: "/manage/supplier",
             component: Supplier,
-        },]
+        },
+        {
+            path: "/manage/cityStatistics",
+            component: CityStatistics,
+        },
+        {
+            path: "/manage/platFormMap",
+            component: PlatFormMap,
+        },
+    ]
     }]
 });

@@ -21,7 +21,8 @@
             <el-menu-item index="/manage/petMaster">宠主管理</el-menu-item>
             <el-menu-item index="/manage/shop">门店管理</el-menu-item>
              <el-menu-item index="/manage/supplier">供应商管理</el-menu-item>
-            <el-menu-item index>统计</el-menu-item>
+            <el-menu-item index="/manage/cityStatistics">统计</el-menu-item>
+            <el-menu-item index="/manage/platFormMap">地图</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">

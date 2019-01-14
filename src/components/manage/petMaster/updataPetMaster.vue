@@ -1,7 +1,7 @@
 <template>
     <div>
 <el-dialog
-  title="修改店铺信息 "
+  title="修改宠主信息 "
   :visible.sync="updataVisible"
   width="50%">
    <el-form :model="petMaster" ref="petMaster" status-icon label-width="100px">
@@ -15,7 +15,7 @@
              <el-input v-model="petMaster.truthName"></el-input>
         </el-form-item>
         <el-form-item label="会员卡：" prop="VIPCard">
-            <el-input v-model="petMaster.addr"></el-input>
+            <el-input v-model="petMaster.VIPCard"></el-input>
         </el-form-item>
         <el-form-item label="头像：" prop="masterPhoto">
       <el-upload
