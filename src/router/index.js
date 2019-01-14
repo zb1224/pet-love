@@ -6,6 +6,9 @@ import Register from "../components/register";
 
 import Manage from '../components/manage';
 
+import Statistics from '../components/manage/platform/statistics';
+
+
 import SupplierInfo from "../components/supplierInfo";
 import SupplierCom from '../components/supplierCom';
 
@@ -36,6 +39,9 @@ export default new VueRouter({
         }, {
             path: '/manage/shopOrders',
             component: shopOrders,
-        }, ]
+        }, {
+            path: "/manage/platfrom/statistics",
+            component: Statistics,
+        }]
     }]
 });

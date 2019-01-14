@@ -20,7 +20,7 @@
             <el-menu-item index>用户管理</el-menu-item>
             <el-menu-item index>宠主管理</el-menu-item>
             <el-menu-item index>门店管理</el-menu-item>
-            <el-menu-item index>统计</el-menu-item>
+            <el-menu-item index="/manage/platfrom/statistics">统计</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
