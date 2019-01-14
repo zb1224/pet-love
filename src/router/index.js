@@ -12,8 +12,9 @@ import Supplier from "../components/manage/supplier"
 import CityStatistics from "../components/manage/platFormStatistics/cityStatistics"
 import PlatFormMap from "../components/manage/platFormStatistics/platFormMap"
 
-import SupplierInfo from "../components/supplierInfo";
-import SupplierCom from '../components/supplierCom';
+import SupplierInfo from "../components/manage/suppliers/supplierInfo";
+import SupplierCom from '../components/manage/suppliers/supplierCom';
+import SupplierStat from '../components/manage/suppliers/supplierStat';
 
 Vue.use(VueRouter);
 
@@ -37,7 +38,11 @@ export default new VueRouter({
         }, {
             path: '/manage/supplierCom',
             component: SupplierCom,
-        }, 
+        },
+        {
+            path: '/manage/supplierStat',
+            component: SupplierStat,
+        },
         {
             path: "/manage/users",
             component: Users,

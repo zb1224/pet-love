@@ -46,19 +46,14 @@
                 </el-form-item>
                 <!-- 上传单张图片 -->
                 <el-form-item label=产品首页图 prop="productBigImg">
-                    <el-upload class="avatar-uploader" action="supplierCom/upload" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload" :auto-upload="true">
+                    <el-upload class="avatar-uploader" action="/supplierCom/upload" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload" :auto-upload="true">
                         <img v-if="addForm.productBigImg" :src="addForm.productBigImg" class="avatar">
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                     </el-upload>
                 </el-form-item>
                 <!-- 上传多张图片 -->
                 <el-form-item label=产品详情图 prop="productSmallImg">
-                    <el-upload action="supplierCom/upload" 
-                    list-type="picture-card" 
-                    :on-success="handleAvatarMultipleSuccess" 
-                    :on-preview="handlePictureCardPreview" 
-                    :on-remove="handleRemove" 
-                    :file-list="addForm.productSmallImg">
+                    <el-upload action="/supplierCom/upload" list-type="picture-card" :on-success="handleAvatarMultipleSuccess" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :file-list="addForm.productSmallImg">
                         <i class="el-icon-plus"></i>
                     </el-upload>
                 </el-form-item>
@@ -76,7 +71,7 @@
 import { createNamespacedHelpers } from "vuex";
 import axios from "axios";
 
-const { mapActions } = createNamespacedHelpers("supplierComModule");
+const { mapActions, mapState } = createNamespacedHelpers("supplierComModule");
 export default {
   data() {
     return {
@@ -101,6 +96,10 @@ export default {
       dialogVisible: false
     };
   },
+  computed: {
+    ...mapState(["usersId"]),
+    ...mapState(["supplierId"])
+  },
   methods: {
     ...mapActions(["show"]),
     addCommodity() {
@@ -109,7 +108,8 @@ export default {
         url: "/supplierCom",
         data: {
           ...this.addForm,
-           productSmallImg:JSON.stringify(this.addForm.productSmallImg)
+          supplierId: this.supplierId,
+          productSmallImg: JSON.stringify(this.addForm.productSmallImg)
         }
       }).then(() => {
         this.show();
