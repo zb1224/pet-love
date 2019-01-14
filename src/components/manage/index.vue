@@ -20,7 +20,7 @@
             <el-menu-item index="/manage/users">用户管理</el-menu-item>
             <el-menu-item index="/manage/petMaster">宠主管理</el-menu-item>
             <el-menu-item index="/manage/shop">门店管理</el-menu-item>
-             <el-menu-item index="/manage/supplier">供应商管理</el-menu-item>
+            <el-menu-item index="/manage/supplier">供应商管理</el-menu-item>
             <el-menu-item index="/manage/cityStatistics">统计</el-menu-item>
             <el-menu-item index="/manage/platFormMap">地图</el-menu-item>
           </el-submenu>
@@ -42,7 +42,7 @@
             <el-menu-item index>商品管理</el-menu-item>
             <el-menu-item index>选择供应商货品</el-menu-item>
             <el-menu-item index>服务管理</el-menu-item>
-            <el-menu-item index>订单管理</el-menu-item>
+            <el-menu-item index="/manage/shopOrders">订单管理</el-menu-item>
             <el-menu-item index>统计</el-menu-item>
           </el-submenu>
         </el-menu>

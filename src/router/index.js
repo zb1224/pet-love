@@ -15,6 +15,12 @@ import PlatFormMap from "../components/manage/platFormStatistics/platFormMap"
 import SupplierInfo from "../components/manage/suppliers/supplierInfo";
 import SupplierCom from '../components/manage/suppliers/supplierCom';
 import SupplierStat from '../components/manage/suppliers/supplierStat';
+import Statistics from '../components/manage/platform/statistics';
+
+
+
+
+import shopOrders from "../components/shopOrders";
 
 Vue.use(VueRouter);
 
@@ -33,40 +39,47 @@ export default new VueRouter({
         path: "/manage",
         component: Manage,
         children: [{
-            path: "/manage/supplierInfo",
-            component: SupplierInfo,
-        }, {
-            path: '/manage/supplierCom',
-            component: SupplierCom,
-        },
-        {
-            path: '/manage/supplierStat',
-            component: SupplierStat,
-        },
-        {
-            path: "/manage/users",
-            component: Users,
-        },
-        {
-            path: "/manage/shop",
-            component: Shop,
-        },
-        {
-            path: "/manage/petMaster",
-            component: PetMaster,
-        },
-        {
-            path: "/manage/supplier",
-            component: Supplier,
-        },
-        {
-            path: "/manage/cityStatistics",
-            component: CityStatistics,
-        },
-        {
-            path: "/manage/platFormMap",
-            component: PlatFormMap,
-        },
-    ]
+                path: "/manage/supplierInfo",
+                component: SupplierInfo,
+            }, {
+                path: '/manage/supplierCom',
+                component: SupplierCom,
+            },
+            {
+                path: '/manage/supplierStat',
+                component: SupplierStat,
+            },
+            {
+                path: "/manage/users",
+                component: Users,
+            },
+            {
+                path: "/manage/shop",
+                component: Shop,
+            },
+            {
+                path: "/manage/petMaster",
+                component: PetMaster,
+            },
+            {
+                path: "/manage/supplier",
+                component: Supplier,
+            },
+            {
+                path: "/manage/cityStatistics",
+                component: CityStatistics,
+            },
+            {
+                path: "/manage/platFormMap",
+                component: PlatFormMap,
+            },
+            {
+                path: '/manage/shopOrders',
+                component: shopOrders,
+            }, {
+                path: "/manage/platfrom/statistics",
+                component: Statistics,
+            }
+        ]
     }]
 });
