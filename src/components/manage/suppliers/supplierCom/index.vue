@@ -1,15 +1,15 @@
 <template>
-    <div>
-        <AddCommodity></AddCommodity>
-        <CommodityList></CommodityList>
-        <UpdateCommodity></UpdateCommodity>
-    </div>
+  <div>
+    <AddCommodity></AddCommodity>
+    <CommodityList></CommodityList>
+    <UpdateCommodity></UpdateCommodity>
+  </div>
 </template>
 
 <script>
 import AddCommodity from "./AddCommodity";
 import CommodityList from "./CommodityList";
-import UpdateCommodity from './UpdateCommodity';
+import UpdateCommodity from "./UpdateCommodity";
 import { createNamespacedHelpers } from "vuex";
 
 const { mapActions } = createNamespacedHelpers("supplierComModule");
@@ -20,10 +20,10 @@ export default {
     UpdateCommodity
   },
   created() {
-    this.show();
+    this.getSession();
   },
   methods: {
-    ...mapActions(["show"])
+    ...mapActions(["show", "getSession"])
   }
 };
 </script>

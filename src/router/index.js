@@ -12,6 +12,7 @@ import Supplier from "../components/manage/supplier"
 
 import SupplierInfo from "../components/supplierInfo";
 import SupplierCom from '../components/supplierCom';
+import SupplierStat from '../components/supplierStat';
 
 Vue.use(VueRouter);
 
@@ -35,7 +36,11 @@ export default new VueRouter({
         }, {
             path: '/manage/supplierCom',
             component: SupplierCom,
-        }, 
+        },
+        {
+            path: '/manage/supplierStat',
+            component: SupplierStat,
+        },
         {
             path: "/manage/users",
             component: Users,

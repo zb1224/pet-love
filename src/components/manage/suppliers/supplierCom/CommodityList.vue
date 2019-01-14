@@ -29,10 +29,9 @@
             </el-table-column>
             <el-table-column prop="price" label="价格" width="100">
             </el-table-column>
-            <el-table-column label="操作" width="220">
+            <el-table-column label="操作" width="180">
                 <template slot-scope="scope">
                     <el-button size="mini" @click="showById(scope.row._id)">修改</el-button>
-                    <el-button size="mini" type="success">上架</el-button>
                     <el-button size="mini" type="danger" @click="delCom(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>

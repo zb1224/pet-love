@@ -30,7 +30,7 @@
             </template>
             <el-menu-item index="/manage/supplierInfo">供应商信息</el-menu-item>
             <el-menu-item index="/manage/supplierCom">供应商货品管理</el-menu-item>
-            <el-menu-item index>统计</el-menu-item>
+            <el-menu-item index="/manage/supplierStat">统计</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
