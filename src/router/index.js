@@ -10,9 +10,9 @@ import Shop from "../components/manage/shop"
 import PetMaster from "../components/manage/petMaster"
 import Supplier from "../components/manage/supplier"
 
-import SupplierInfo from "../components/supplierInfo";
-import SupplierCom from '../components/supplierCom';
-import SupplierStat from '../components/supplierStat';
+import SupplierInfo from "../components/manage/suppliers/supplierInfo";
+import SupplierCom from '../components/manage/suppliers/supplierCom';
+import SupplierStat from '../components/manage/suppliers/supplierStat';
 
 Vue.use(VueRouter);
 
