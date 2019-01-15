@@ -23,116 +23,94 @@ import SupplierStat from '../components/manage/suppliers/supplierStat';
 
 
 // 面店管理模板
-import shopOrders from "../components/shopOrders";
+import commodity_management from "../components/shop/commodity_management";
+import sales_statistics from "../components/shop/sales_statistics";
+import SubmitShopInfo from "../components/shop/submitShopInfo";
+import Service from "../components/manage/shop/shopService/Service.vue";
+import ShopOrder from '../components/manage/shop/shopOrder/Dingdan.vue';
 
-import shopOwner from "../components/shopOwner"
-import SubmitShopInfo from "../components/submitShopInfo"
-import commodity_management from "../components/commodity_management"
-import sales_statistics from "../components/sales_statistics"
+
+
+
 
 Vue.use(VueRouter);
 
 export default new VueRouter({
     mode: "history",
     routes: [{
-        path: "/",
-        component: login
-    }, {
-        path: "/login",
-        component: login
-    }, {
-        path: "/register",
-        component: Register
-    },
- {
-        path: "/manage",
-        component: Manage,
-        children: [{
-<<<<<<< HEAD
-            path: "/manage/supplierInfo",
-            component: SupplierInfo,
+            path: "/",
+            component: login
         }, {
-            path: '/manage/supplierCom',
-            component: SupplierCom,
-        }, 
-        {
-            path: "/manage/users",
-            component: Users,
+            path: "/login",
+            component: login
+        }, {
+            path: "/register",
+            component: Register
         },
         {
-            path: "/manage/shop",
-            component: Shop,
-        },
-        {
-            path: "/manage/petMaster",
-            component: PetMaster,
-        },
-        {
-            path: "/manage/supplier",
-            component: Supplier,
-        },
-        {
-            path:"/manage/shopOwner",
-            component:shopOwner,
-        },
-        {
-            path:"/manage/commodity_management",
-            component:commodity_management,
-        },
-        {
-            path:"/manage/submitShopInfo",
-            component:SubmitShopInfo
-        },
-        {
-            path:"/manage/sales_statistics",
-            component:sales_statistics
+            path: "/manage",
+            component: Manage,
+            children: [{
+                    path: "/manage/suppliers/supplierInfo",
+                    component: SupplierInfo,
+                },
+                {
+                    path: '/manage/suppliers/supplierCom',
+                    component: SupplierCom,
+                },
+                {
+                    path: '/manage/suppliers/supplierStat',
+                    component: SupplierStat,
+                },
+                {
+                    path: "/manage/platform/users",
+                    component: Users,
+                },
+                {
+                    path: "/manage/platform/shop",
+                    component: Shop,
+                },
+                {
+                    path: "/manage/platform/petMaster",
+                    component: PetMaster,
+                },
+                {
+                    path: "/manage/platform/supplier",
+                    component: Supplier,
+                },
+                {
+                    path: "/manage/platform/cityStatistics",
+                    component: CityStatistics,
+                },
+                {
+                    path: "/manage/platform/platFormMap",
+                    component: PlatFormMap,
+                },
+                {
+                    path: "/manage/platfrom/saleStatistics",
+                    component: saleStatistics,
+                },
+                {
+                    path: '/manage/shop/shopOrder',
+                    component: ShopOrder,
+                },
+                {
+                    path: "/manage/shop/commodity_management",
+                    component: commodity_management,
+                },
+                {
+                    path: '/manage/shop/service',
+                    component: Service,
+                },
+                {
+                    path: "/manage/shop/submitShopInfo",
+                    component: SubmitShopInfo
+                },
+                {
+                    path: "/manage/shop/sales_statistics",
+                    component: sales_statistics
+                }
+            ]
         }
     ]
-=======
-                path: "/manage/suppliers/supplierInfo",
-                component: SupplierInfo,
-            },
-            {
-                path: '/manage/suppliers/supplierCom',
-                component: SupplierCom,
-            },
-            {
-                path: '/manage/suppliers/supplierStat',
-                component: SupplierStat,
-            },
-            {
-                path: "/manage/platform/users",
-                component: Users,
-            },
-            {
-                path: "/manage/platform/shop",
-                component: Shop,
-            },
-            {
-                path: "/manage/platform/petMaster",
-                component: PetMaster,
-            },
-            {
-                path: "/manage/platform/supplier",
-                component: Supplier,
-            },
-            {
-                path: "/manage/platform/cityStatistics",
-                component: CityStatistics,
-            },
-            {
-                path: "/manage/platform/platFormMap",
-                component: PlatFormMap,
-            },
-            {
-                path: "/manage/platfrom/saleStatistics",
-                component: saleStatistics,
-            },
-            {
-                path: '/manage/shopOrders',
-                component: shopOrders,
-            }
-        ]
->>>>>>> 03ba0573b9ad4e7e842f87c941adcca0c201e610
-    }]
 });
