@@ -48,7 +48,6 @@ export default new VueRouter({
         path: "/manage",
         component: Manage,
         children: [{
-<<<<<<< HEAD
             path: "/manage/supplierInfo",
             component: SupplierInfo,
         }, {
@@ -86,9 +85,8 @@ export default new VueRouter({
         {
             path:"/manage/sales_statistics",
             component:sales_statistics
-        }
-    ]
-=======
+        },{
+    
                 path: "/manage/suppliers/supplierInfo",
                 component: SupplierInfo,
             },
@@ -133,6 +131,5 @@ export default new VueRouter({
                 component: shopOrders,
             }
         ]
->>>>>>> 03ba0573b9ad4e7e842f87c941adcca0c201e610
     }]
 });
