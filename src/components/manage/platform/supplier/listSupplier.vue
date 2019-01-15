@@ -18,10 +18,34 @@
   <el-dialog
   title="供应商商品信息"
   :visible.sync="Visible"
-  width="50%">
+  width="80%">
   <el-row>
   <el-col :span="24">
-    
+    <el-row>
+ <el-table :data="supplierComInfo" style="width: 100%" :fit="true" :border="true" :stripe="true" @row-dblclick="dataShopRow">
+  <el-table-column prop="comName" label="商品名"></el-table-column>
+  <el-table-column prop="comKind" label="种类"></el-table-column>
+  <el-table-column prop="Flavor" label="口味"></el-table-column>
+  <el-table-column prop="place" label="产地"></el-table-column>
+  <el-table-column prop="dateProduction" label="生产日期"></el-table-column>
+  <el-table-column prop="qualityDate" label="保质期"></el-table-column>
+  <el-table-column prop="price" label="价格"></el-table-column>
+    <el-table-column fixed="right" label="操作" width="80">
+      <template slot-scope="scope">
+        <el-button type="info" size="mini" @click="downShop(scope.row._id)">下架</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
+  <div class="pagination">
+    <el-pagination
+      @current-change="comChangePage"
+      :current-page="supplierComPagination.current"
+      :page-size="supplierComPagination.eachpage"
+      layout="prev, pager, next"
+      :total="supplierComPagination.total">
+    </el-pagination>
+  </div>
+    </el-row>
   </el-col>
 </el-row>
 </el-dialog>
@@ -37,8 +61,11 @@ export default {
   data() {
     return {
       Visible: false,
-      supplierInfo: {
-        
+      rowId: "",
+      supplierComInfo: {},
+      supplierComPagination: {
+        curpage: 1,
+        eachpage: 5
       }
     };
   },
@@ -71,14 +98,38 @@ export default {
         return "已通过";
       }
     },
-    dataShopRow(row, event, column) {
+    comShow() {
       axios({
         method: "get",
-        url: "/supplier/" + row._id
+        url: "/supplierCom",
+        params: {
+          page: this.supplierComPagination.curpage,
+          rows: this.supplierComPagination.eachpage,
+          supplierId: this.rowId
+        }
       }).then(({ data }) => {
-        console.log(data);
-        this.supplierInfo = data;
+        console.log("654565465", data);
+        this.supplierComInfo = data.rows;
+        this.supplierComPagination = data;
         this.Visible = true;
+      });
+    },
+    dataShopRow(row, event, column) {
+      this.rowId = row._id;
+      this.comShow();
+    },
+    comChangePage(i) {
+      console.log(i);
+      this.supplierComPagination.curpage = i;
+      this.comShow();
+    },
+    downShop(id) {
+      axios({
+        method: "delete",
+        url: "/supplierCom/" + id
+      }).then(({ data }) => {
+        this.$alert("下架成功", "提示");
+        this.comShow();
       });
     }
   },

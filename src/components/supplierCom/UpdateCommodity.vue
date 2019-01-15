@@ -64,8 +64,8 @@
                 </el-form-item> -->
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="updateVisible = false">取 消</el-button>
-                <el-button type="primary" @click="update">修 改</el-button>
+                <el-button @click="updateVisible = false">取消</el-button>
+                <el-button type="primary" @click="update">修改</el-button>
             </span>
         </el-dialog>
     </div>

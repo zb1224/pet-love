@@ -4,14 +4,26 @@ import VueRouter from 'vue-router';
 import login from "../components/login";
 import Register from "../components/register";
 
+// 管理界面
 import Manage from '../components/manage';
-import Users from "../components/manage/users"
-import Shop from "../components/manage/shop"
-import PetMaster from "../components/manage/petMaster"
-import Supplier from "../components/manage/supplier"
 
-import SupplierInfo from "../components/supplierInfo";
-import SupplierCom from '../components/supplierCom';
+// 平台管理模板
+import PetMaster from "../components/manage/platform/petMaster";
+import Shop from "../components/manage/platform/shop";
+import Supplier from "../components/manage/platform/supplier";
+import Users from "../components/manage/platform/users";
+import CityStatistics from "../components/manage/platform/platFormStatistics/cityStatistics";
+import PlatFormMap from "../components/manage/platform/platFormStatistics/platFormMap";
+import saleStatistics from '../components/manage/platform/platFormStatistics/saleStatistics';
+
+// 供应商管理模板
+import SupplierInfo from "../components/manage/suppliers/supplierInfo";
+import SupplierCom from '../components/manage/suppliers/supplierCom';
+import SupplierStat from '../components/manage/suppliers/supplierStat';
+
+
+// 面店管理模板
+import shopOrders from "../components/shopOrders";
 
 import shopOwner from "../components/shopOwner"
 import SubmitShopInfo from "../components/submitShopInfo"
@@ -36,6 +48,7 @@ export default new VueRouter({
         path: "/manage",
         component: Manage,
         children: [{
+<<<<<<< HEAD
             path: "/manage/supplierInfo",
             component: SupplierInfo,
         }, {
@@ -75,5 +88,51 @@ export default new VueRouter({
             component:sales_statistics
         }
     ]
+=======
+                path: "/manage/suppliers/supplierInfo",
+                component: SupplierInfo,
+            },
+            {
+                path: '/manage/suppliers/supplierCom',
+                component: SupplierCom,
+            },
+            {
+                path: '/manage/suppliers/supplierStat',
+                component: SupplierStat,
+            },
+            {
+                path: "/manage/platform/users",
+                component: Users,
+            },
+            {
+                path: "/manage/platform/shop",
+                component: Shop,
+            },
+            {
+                path: "/manage/platform/petMaster",
+                component: PetMaster,
+            },
+            {
+                path: "/manage/platform/supplier",
+                component: Supplier,
+            },
+            {
+                path: "/manage/platform/cityStatistics",
+                component: CityStatistics,
+            },
+            {
+                path: "/manage/platform/platFormMap",
+                component: PlatFormMap,
+            },
+            {
+                path: "/manage/platfrom/saleStatistics",
+                component: saleStatistics,
+            },
+            {
+                path: '/manage/shopOrders',
+                component: shopOrders,
+            }
+        ]
+>>>>>>> 03ba0573b9ad4e7e842f87c941adcca0c201e610
     }]
 });

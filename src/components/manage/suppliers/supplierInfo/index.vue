@@ -23,7 +23,7 @@
         <el-form-item label="供应商执照">
           <el-upload
             class="avatar-uploader"
-            action="/supplier/upload"
+            action="/suppliers/upload"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
@@ -80,7 +80,7 @@ export default {
             } = this.supplier;
             axios({
               method: "post",
-              url: "/supplier",
+              url: "/suppliers",
               params: {
                 supName,
                 supAddr,
@@ -94,7 +94,7 @@ export default {
               let supplierId = data._id;
               axios({
                 method: "post",
-                url: "/supplier/user",
+                url: "/suppliers/user",
                 params: {
                   _id: this.user._id,
                   supplierId
@@ -118,7 +118,7 @@ export default {
             } = this.supplier;
             axios({
               method: "put",
-              url: "/supplier/" + _id,
+              url: "/suppliers/" + _id,
               params: {
                 supName,
                 supAddr,
@@ -139,7 +139,7 @@ export default {
     },
 
     handleAvatarSuccess(path) {
-      // console.log(path);
+      console.log(path);
       this.supplier.supImg = "/upload/" + path;
     },
 
@@ -172,7 +172,7 @@ export default {
           } else {
             axios({
               method: "get",
-              url: "/supplier/" + data.supplier
+              url: "/suppliers/" + data.supplier
             }).then(({ data }) => {
               this.supplier = data;
               this.user = data;
@@ -199,7 +199,7 @@ export default {
         } else {
           axios({
             method: "get",
-            url: "/supplier/" + data.supplier
+            url: "/suppliers/" + data.supplier
           }).then(({ data }) => {
             this.supplier = data;
             this.user = data;
