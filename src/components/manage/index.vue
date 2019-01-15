@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <div>
-        <h1>爱宠邦宠物管理系统</h1>
+        <h1 class="sysTitle">爱宠邦宠物管理系统</h1>
         <div>
           <span>你好</span>
           <el-button icon="el-icon-close">退出</el-button>
@@ -94,7 +94,26 @@ export default {
   }
 };
 </script>
+
 <style scoped>
+.el-header {
+  background-color: turquoise;
+  color: wheat;
+  /* line-height: 60px; */
+}
+.el-submenu {
+  background-color: aliceblue;
+}
+.el-aside {
+  background-color: aliceblue;
+  height: 595px;
+}
+.el-main{
+  background-color: aliceblue;
+}
+.sysTitle{
+  color: white;
+}
 </style>
 
 
