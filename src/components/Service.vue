@@ -41,7 +41,7 @@
            <div class="block">
         <el-date-picker
         v-model="date"
-         value-format="yy年M月d日"
+         value-format="yyyy/M/d"
         type="date"
          placeholder="选择日期">
         </el-date-picker>
@@ -86,7 +86,26 @@
         <el-button type="primary" @click="updateservice">确 定</el-button>
       </span>
     </el-dialog>
-    <Page :pagination="pagination" :show="show" ></Page>
+    <Page :pagination="pagination" :show="show" ></Page> 
+    <!-- 选择统计图的类型 -->
+    <span>请先选择统计类型和值</span>
+    <div>
+    <el-input placeholder="请输入内容" v-model="value" style="width:300px"   class="input-with-select">
+      <el-select v-model="type" class="select" slot="prepend" placeholder="请选择">
+        <el-option label="年" value="年"></el-option>
+        <el-option label="月" value="月"></el-option>
+        <el-option label="季度" value="季度"></el-option>
+      </el-select>
+    </el-input>
+  </div>
+  <!-- 销量统计图 -->
+    <input type="button" @click="showChart" value="销量统计图" >
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+  <!-- 销售额统计图 -->
+     <input type="button" @click="showChart2" value="销售额统计图" >
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="salesvolume" style="width: 600px;height:400px;"></div>
   </div>
 </template>
 
@@ -95,13 +114,89 @@ import axios from "axios";
 import Addservice from "./Addservice";
 import Page from "./Page";
 import Search from "./Search"
-
+//引入echarts组件
+import echarts from "echarts/lib/echarts";
+// 引入提示框和标题组件
+import "echarts/lib/component/tooltip";
+import "echarts/lib/component/title";
+import "echarts/lib/component/legend";
+import "echarts/extension/bmap/bmap";
 export default {
   created() {
     this.show();
   },
+
   methods: {
-    
+      showChart(){
+
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('main'));
+           axios({
+                    url: "/shopping/serviceTotal",
+                    method: "get",
+                    params:{
+                      type:this.type,
+                      value:this.value
+                    }
+                }).then(({data})=> {
+                  let axisData=[];
+                  let seriesData=[];           
+                   for(let i=0;i<data.length-1;i++){
+                     for(let j=i+1;j<data.length;j++){
+                       if(data[i].name==data[j].name){
+                             data.splice(j,1);
+                             data[i].count++;
+                       }
+                     }
+                      //  console.log("item",data[i])
+                      axisData.push(data[i].name);
+                      seriesData.push(data[i].count)
+                  }
+                    this.serviceAxisData =axisData;
+                    this.serviceSeriesData =seriesData;
+                    myChart.setOption(this.serviceOptions, true);
+                });
+        
+      },
+      showChart2:function(){
+          let time= this.getTime();
+          //获取到系统的实时时间
+          this.time=time;
+          
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('salesvolume'));
+           axios({
+                    url: "/shopping/salesvolume",
+                    method: "get",
+                    params:{
+                      time:this.time
+                    }
+                }).then(({data})=> {
+                    let axisData=[];
+                  let seriesData=[];   
+                  console.log("6666",data)
+                   for(let i=0;i<data.length-1;i++){
+                     for(let j=i+1;j<data.length;j++){
+                       if(data[i].name==data[j].name){
+                         data[i].price=parseInt(data[i].price);
+                         data[j].price=parseInt(data[j].price)
+                             data[i].price+=data[j].price  
+                             data.splice(j,1);                         
+                       }else{
+                          data[i].price=parseInt(data[i].price);
+                          data[j].price=parseInt(data[j].price)
+                       }
+                     }
+                       axisData.push(data[i].name);
+                       seriesData.push(data[i].price)                    
+                   }
+                  
+                    this.salesvolumeAxisData =axisData;
+                    this.salesvolumeSeriesData =seriesData;
+                    myChart.setOption(this.salesvolumeOptions, true);
+                });
+        
+      },
       //修改服务
     updatebtn: function(index, row) {
       this.index = index;
@@ -113,7 +208,7 @@ export default {
         let id=row._id;
           axios({
         method: "delete",
-        url: "/shop/"+id,
+        url: "/shopping/"+id,
       }).then(({ data }) => {
         if(data.status==1){
             this.show();
@@ -123,7 +218,7 @@ export default {
     show: function(page=1,rows=5,type,value) {
       axios({
         method: "get",
-        url: "/shop",
+        url: "/shopping",
         params: {
           page,
           rows,
@@ -132,7 +227,7 @@ export default {
         }
       }).then(({ data }) => {
         this.serviceData = data.rows;
-        console.log("666",this.serviceData)
+        // console.log("666",this.serviceData)
         this.pagination=data;
         
       });
@@ -140,7 +235,7 @@ export default {
     updateservice: function() {
       axios({
         method: "put",
-        url: "/shop/" + this.id,
+        url: "/shopping /" + this.id,
         data: {
           serviceName: this.serviceData[this.index].serviceName,
           serviceType: this.serviceData[this.index].serviceType,
@@ -156,7 +251,17 @@ export default {
           this.dialogVisible = false;
         }
       });
-    }
+    },
+    getTime(){
+            var nowtime = new Date();
+            var year = nowtime.getFullYear();
+            // var month = (nowtime.getMonth() + 1).toString().replace(/^[0-9]{1}$/,"0"+(nowtime.getMonth() + 1));
+            var month = (nowtime.getMonth() + 1).toString().replace(/^[0-9]{1}$/,nowtime.getMonth() + 1);
+            var day = (nowtime.getDate()).toString().replace(/^[0-9]{1}$/,nowtime.getDate());
+            // commit("setTrueTime", year+'/'+month+'/'+day);
+            return  year+'/'+month+'/'+day
+        }
+
   },
 
   computed: {
@@ -189,7 +294,45 @@ export default {
           return this.serviceData[this.index].serviceTime.split("-")[2];
         }
       }
-    }
+    },
+      serviceOptions() {
+            return {
+                title: {
+                    text: "订单数的统计图"
+                },
+                tooltip: {},
+                xAxis: {
+                    data: this.serviceAxisData
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: "服务",
+                        type: "bar",
+                        data: this.serviceSeriesData
+                    }
+                ]
+            };
+        },  
+        salesvolumeOptions() {
+            return {
+                title: {
+                    text: "服务销售额的统计图"
+                },
+                tooltip: {},
+                xAxis: {
+                    data: this.salesvolumeAxisData
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: "服务",
+                        type: "bar",
+                        data: this.salesvolumeSeriesData
+                    }
+                ]
+            };
+        },
   },
   data() {
     return {
@@ -197,7 +340,14 @@ export default {
       serviceData: [{}],
       index: 0,
       id: "",
-      pagination:{}
+      pagination:{},
+      serviceAxisData: [],
+      serviceSeriesData: [],
+      salesvolumeAxisData:[],
+      salesvolumeSeriesData:[],
+      type:"",
+      value:"",
+      time:""
     };
   },
   components: {

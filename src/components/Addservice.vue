@@ -23,7 +23,7 @@
           <!-- <span class="demonstration">默认</span> -->
           <el-date-picker
             v-model="date"
-            value-format="yy年M月d日"
+            value-format="yyyy/M/d"
             type="date"
              placeholder="选择日期">
          </el-date-picker>
@@ -95,7 +95,7 @@ export default {
     addservice() {
       axios({
         method: "post",
-        url: "/shop",
+        url: "/shopping",
         data: {
           serviceName: this.addservices.serviceName,
           serviceType: this.addservices.serviceType,

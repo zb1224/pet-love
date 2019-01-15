@@ -27,7 +27,7 @@ export default {
     //每页条数改变触发
     changeSize(page,rows,size) { 
       this.show( page= this.pagination.curpage, rows= size );
-      console.log("5555",page,rows,size)
+      // console.log("5555",page,rows,size)
     }
     
   }
