@@ -12,7 +12,7 @@
     <el-container>
       <el-aside width="200px">
         <el-menu :default-active="path" :router="true" width="200px">
-          <el-submenu index="1">
+          <el-submenu index="1" :disabled="platform">
             <template slot="title">
               <i class="el-icon-message"></i>
               <span>平台管理</span>
@@ -25,7 +25,7 @@
             <el-menu-item index="/manage/platfrom/saleStatistics">销量统计</el-menu-item>
             <el-menu-item index="/manage/platform/platFormMap">地图</el-menu-item>
           </el-submenu>
-          <el-submenu index="2">
+          <el-submenu index="2" :disabled="suppliers">
             <template slot="title">
               <i class="el-icon-message"></i>
               <span>供应商管理</span>
@@ -34,7 +34,7 @@
             <el-menu-item index="/manage/suppliers/supplierCom">供应商货品管理</el-menu-item>
             <el-menu-item index="/manage/suppliers/supplierStat">统计</el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
+          <el-submenu index="3" :disabled="shop">
             <template slot="title">
               <i class="el-icon-message"></i>
               <span>门店管理</span>
@@ -60,6 +60,9 @@ import axios from "axios";
 export default {
   data() {
     return {
+      platform: true,
+      suppliers: true,
+      shop: true,
       user: {}
     };
   },
@@ -73,8 +76,14 @@ export default {
       if (!data) {
         this.$router.push("/login");
       } else if (data.attribute == "Administrators") {
+        this.platform = false;
+        this.$alert("你是平台管理员账户，只能进行平台管理", "消息");
       } else if (data.attribute == "store") {
+        this.shop = false;
+        this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
       } else if (data.attribute == "supplier") {
+        this.suppliers = false;
+        this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
       }
     });
   },
@@ -86,7 +95,6 @@ export default {
 };
 </script>
 <style scoped>
-
 </style>
 
 
