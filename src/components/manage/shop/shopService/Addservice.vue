@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" @click="dialogVisible = true">增加</el-button>
+    <el-button type="primary" @click="getSession">增加</el-button>
     <el-dialog title="增加服务" :visible.sync="dialogVisible" width="60%">
       <el-form status-icon ref="addservices" label-width="100px" class="demo-ruleForm">
         <el-form-item label="名称" prop="serviceName">
@@ -87,6 +87,7 @@ export default {
         time: "",
         serviceLeve: "",
         price: "",
+        shopId:""
       }
     };
   },
@@ -105,7 +106,7 @@ export default {
           time: this.addservices.time,
           serviceLeve: this.addservices.serviceLeve,
           price: this.addservices.price,
-          shopId:"5c32f25a3f79bff8f77b2f69"        
+          shopId:this.shopId        
         }
       }).then(({ data }) => {
         if (data.status == 1) {
@@ -113,7 +114,28 @@ export default {
           this.dialogVisible = false;
         }
       });
-    }
+      this.getSession()
+    },
+    getSession() {
+      this.dialogVisible=true;
+            axios({
+              method: "get",
+              url: "/index/getSession"
+            }).then(({ data }) => {
+              let id =data._id;
+              // console.log("登录的用户信息",data)
+              // console.log(id)
+              axios({
+                method: "get",
+                url:"/shop",
+                params:{
+                    usersId:id
+                }
+              }).then(({data})=>{
+               this.shopId=data[0]._id;
+              })
+            });
+          },
   },
   components: {
     

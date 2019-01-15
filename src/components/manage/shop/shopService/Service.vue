@@ -138,10 +138,10 @@ export default {
                       type:this.type,
                       value:this.value
                     }
-                }).then(({data})=> {
+                }).then(({data})=> {                
                   let axisData=[];
                   let seriesData=[];           
-                   for(let i=0;i<data.length-1;i++){
+                   for(let i=0;i<=data.length-1;i++){
                      for(let j=i+1;j<data.length;j++){
                        if(data[i].name==data[j].name){
                              data.splice(j,1);
@@ -174,8 +174,7 @@ export default {
                 }).then(({data})=> {
                     let axisData=[];
                   let seriesData=[];   
-                  console.log("6666",data)
-                   for(let i=0;i<data.length-1;i++){
+                   for(let i=0;i<=data.length-1;i++){
                      for(let j=i+1;j<data.length;j++){
                        if(data[i].name==data[j].name){
                          data[i].price=parseInt(data[i].price);
@@ -235,7 +234,7 @@ export default {
     updateservice: function() {
       axios({
         method: "put",
-        url: "/shopping /" + this.id,
+        url: "/shopping/" + this.id,
         data: {
           serviceName: this.serviceData[this.index].serviceName,
           serviceType: this.serviceData[this.index].serviceType,
