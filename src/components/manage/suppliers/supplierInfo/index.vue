@@ -161,11 +161,11 @@ export default {
         method: "get",
         url: "/index/getSession"
       }).then(({ data }) => {
-        // console.log(data);
+        console.log(data);
         if (!data.logTel) {
           this.$router.push("/login");
         } else if (data.logTel) {
-          // console.log(data.supplier);
+          console.log("1111",data.supplier);
           if (data.supplier == undefined) {
             this.$alert("你的信息还未完善", "消息");
             this.user = data;

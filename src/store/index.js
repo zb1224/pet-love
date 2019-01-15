@@ -7,12 +7,12 @@ import shopModules from "./modules/shopModules";
 import petMasterModules from "./modules/petMasterModules";
 import supplierModules from "./modules/supplierModules";
 // 赵丽
-import shopComModule from "./modules/shopComModule"
-import shopOwnerModules from "./modules/shopOwnerModules"
-// 赵斌
-import supplierComModule from './supplierComModule';
+import shopComModule from "./modules/shopComModule";
+import shopOwnerModules from "./modules/shopOwnerModules";
 // 陈坤
 import shopOrderModule from "./shopOrderModule";
+// 赵斌
+import supplierComModule from './supplierComModule';
 
 Vue.use(Vuex)
 

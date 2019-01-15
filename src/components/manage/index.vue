@@ -39,12 +39,11 @@
               <i class="el-icon-message"></i>
               <span>门店管理</span>
             </template>
-            <el-menu-item index="/manage/submitShopInfo">门店申请</el-menu-item>
-            <el-menu-item index="/manage/commodity_management">商品管理</el-menu-item>
-            <el-menu-item index>选择供应商货品</el-menu-item>
-            <el-menu-item index>服务管理</el-menu-item>
-            <el-menu-item index="/manage/shopOrders">订单管理</el-menu-item>
-            <el-menu-item index="/manage/sales_statistics">统计</el-menu-item>
+            <el-menu-item index="/manage/shop/submitShopInfo">门店申请</el-menu-item>
+            <el-menu-item index="/manage/shop/commodity_management">商品管理</el-menu-item>
+            <el-menu-item index="/manage/shop/service">服务管理</el-menu-item>
+            <el-menu-item index="/manage/shop/shopOrder">订单管理</el-menu-item>
+            <el-menu-item index="/manage/shop/sales_statistics">商品统计</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -87,5 +86,7 @@ export default {
 };
 </script>
 <style scoped>
+
 </style>
+
 
