@@ -1,37 +1,31 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-
+// 胡寒冰
 import userModules from "./modules/userModules";
 import shopModules from "./modules/shopModules";
 import petMasterModules from "./modules/petMasterModules";
 import supplierModules from "./modules/supplierModules";
-import supplierComModule from './supplierComModule';
-<<<<<<< HEAD
-import userModules from "./modules/userModules"
-import shopModules from "./modules/shopModules"
-import petMasterModules from "./modules/petMasterModules"
-import supplierModules from "./modules/supplierModules"
+// 赵丽
 import shopComModule from "./modules/shopComModule"
 import shopOwnerModules from "./modules/shopOwnerModules"
-=======
+// 赵斌
+import supplierComModule from './supplierComModule';
+// 陈坤
 import shopOrderModule from "./shopOrderModule";
->>>>>>> 03ba0573b9ad4e7e842f87c941adcca0c201e610
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     modules: {
-<<<<<<< HEAD
-        supplierComModule, userModules, shopModules, petMasterModules, supplierModules, shopComModule,shopOwnerModules
-=======
+        shopComModule,
+        shopOwnerModules,
         userModules,
         shopModules,
         petMasterModules,
         supplierModules,
         supplierComModule,
         shopOrderModule
->>>>>>> 03ba0573b9ad4e7e842f87c941adcca0c201e610
     },
     state: {
 

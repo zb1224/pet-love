@@ -44,95 +44,70 @@ export default new VueRouter({
         path: "/register",
         component: Register
     },
- {
+    {
         path: "/manage",
         component: Manage,
         children: [{
-<<<<<<< HEAD
-            path: "/manage/supplierInfo",
+            path: "/manage/suppliers/supplierInfo",
             component: SupplierInfo,
-        }, {
-            path: '/manage/supplierCom',
-            component: SupplierCom,
-        }, 
+        },
         {
-            path: "/manage/users",
+            path: '/manage/suppliers/supplierCom',
+            component: SupplierCom,
+        },
+        {
+            path: '/manage/suppliers/supplierStat',
+            component: SupplierStat,
+        },
+        {
+            path: "/manage/platform/users",
             component: Users,
         },
         {
-            path: "/manage/shop",
+            path: "/manage/platform/shop",
             component: Shop,
         },
         {
-            path: "/manage/petMaster",
+            path: "/manage/platform/petMaster",
             component: PetMaster,
         },
         {
-            path: "/manage/supplier",
+            path: "/manage/platform/supplier",
             component: Supplier,
         },
         {
-            path:"/manage/shopOwner",
-            component:shopOwner,
+            path: "/manage/platform/cityStatistics",
+            component: CityStatistics,
         },
         {
-            path:"/manage/commodity_management",
-            component:commodity_management,
+            path: "/manage/platform/platFormMap",
+            component: PlatFormMap,
         },
         {
-            path:"/manage/submitShopInfo",
-            component:SubmitShopInfo
+            path: "/manage/platfrom/saleStatistics",
+            component: saleStatistics,
         },
         {
-            path:"/manage/sales_statistics",
-            component:sales_statistics
+            path: '/manage/shopOrders',
+            component: shopOrders,
+        },
+        
+        {
+            path: "/manage/shopOwner",
+            component: shopOwner,
+        },
+        {
+            path: "/manage/commodity_management",
+            component: commodity_management,
+        },
+        {
+            path: "/manage/submitShopInfo",
+            component: SubmitShopInfo
+        },
+        {
+            path: "/manage/sales_statistics",
+            component: sales_statistics
         }
-    ]
-=======
-                path: "/manage/suppliers/supplierInfo",
-                component: SupplierInfo,
-            },
-            {
-                path: '/manage/suppliers/supplierCom',
-                component: SupplierCom,
-            },
-            {
-                path: '/manage/suppliers/supplierStat',
-                component: SupplierStat,
-            },
-            {
-                path: "/manage/platform/users",
-                component: Users,
-            },
-            {
-                path: "/manage/platform/shop",
-                component: Shop,
-            },
-            {
-                path: "/manage/platform/petMaster",
-                component: PetMaster,
-            },
-            {
-                path: "/manage/platform/supplier",
-                component: Supplier,
-            },
-            {
-                path: "/manage/platform/cityStatistics",
-                component: CityStatistics,
-            },
-            {
-                path: "/manage/platform/platFormMap",
-                component: PlatFormMap,
-            },
-            {
-                path: "/manage/platfrom/saleStatistics",
-                component: saleStatistics,
-            },
-            {
-                path: '/manage/shopOrders',
-                component: shopOrders,
-            }
         ]
->>>>>>> 03ba0573b9ad4e7e842f87c941adcca0c201e610
     }]
 });
