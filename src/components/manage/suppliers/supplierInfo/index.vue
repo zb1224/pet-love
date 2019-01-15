@@ -21,13 +21,7 @@
           <el-input v-model="supplier.supLicense"></el-input>
         </el-form-item>
         <el-form-item label="供应商执照">
-          <el-upload
-            class="avatar-uploader"
-            action="/suppliers/upload"
-            :show-file-list="false"
-            :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload"
-          >
+          <el-upload class="avatar-uploader" action="/suppliers/upload" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
             <img v-if="supplier.supImg" :src="supplier.supImg" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
@@ -60,6 +54,7 @@ export default {
         supImg: "",
         supRemarks: ""
       },
+      usersId:"",
       supplier_rules: {}
     };
   },
@@ -68,6 +63,7 @@ export default {
     perfectInfo(supplierForm) {
       this.$refs[supplierForm].validate(valid => {
         if (valid) {
+          console.log("userId",this.usersId);
           if (this.supplier._id == "未注册") {
             let {
               supName,
@@ -88,9 +84,11 @@ export default {
                 supInternet,
                 supLicense,
                 supImg,
-                supRemarks
+                supRemarks,
+                usersId:this.usersId
               }
             }).then(({ data }) => {
+              console.log("添加用户的data", data);
               let supplierId = data._id;
               axios({
                 method: "post",
@@ -100,6 +98,7 @@ export default {
                   supplierId
                 }
               }).then(({ data }) => {
+                console.log("添加成功的data", data);
                 if (data == "suc") {
                   this.$alert("完善数据成功，等待审核", "消息");
                 }
@@ -154,6 +153,7 @@ export default {
         this.$message.error("上传头像图片大小不能超过 2MB!");
       }
       return isJPG && isLt2M;
+<<<<<<< HEAD
     },
 
     getSession() {
@@ -180,31 +180,38 @@ export default {
           }
         }
       });
+=======
+>>>>>>> zb
     }
   },
-
   created() {
     axios({
       method: "get",
       url: "/index/getSession"
     }).then(({ data }) => {
-      // console.log(data);
+      console.log("登录进来的data", data);
+      this.usersId=data._id
       if (!data.logTel) {
         this.$router.push("/login");
       } else if (data.logTel) {
-        // console.log(data.supplier);
-        if (data.supplier == undefined) {
-          this.$alert("你的信息还未完善", "消息");
-          this.user = data;
-        } else {
-          axios({
-            method: "get",
-            url: "/suppliers/" + data.supplier
-          }).then(({ data }) => {
-            this.supplier = data;
-            this.user = data;
-          });
-        }
+        console.log("wokandao", data.supplier);
+        console.log("得到", data._id);
+        axios({
+          url: "/index/supplier",
+          method: "get",
+          params: {
+            usersId: data._id
+          }
+        }).then(({ data }) => {
+          console.log("找到的data", data);
+          if (data.length == 0) {
+            this.$alert("你的信息还未完善", "消息");
+          } else {
+            this.user = data[0].users;
+            this.supplier = data[0];
+            // this.usersId=data[0]._id
+          }
+        });
       }
     });
   }
