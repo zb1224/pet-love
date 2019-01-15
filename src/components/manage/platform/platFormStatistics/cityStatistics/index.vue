@@ -388,7 +388,7 @@ export default {
         if (this.type2 == "第一季度") {
           this.cityServeData.forEach(function(item) {
             cityArr.push(item.city);
-            cityComArr.push({
+            cityServeArr.push({
               name: item.city,
               value:
                 item.year2019.month1 +
@@ -399,7 +399,7 @@ export default {
         } else if (this.type2 == "第二季度") {
           this.cityComData.forEach(function(item) {
             cityArr.push(item.city);
-            cityComArr.push({
+            cityServeArr.push({
               name: item.city,
               value:
                 item.year2019.month4 +
@@ -410,7 +410,7 @@ export default {
         } else if (this.type2 == "第三季度") {
           this.cityComData.forEach(function(item) {
             cityArr.push(item.city);
-            cityComArr.push({
+            cityServeArr.push({
               name: item.city,
               value:
                 item.year2019.month7 +
@@ -421,7 +421,7 @@ export default {
         } else if (this.type2 == "第四季度") {
           this.cityComData.forEach(function(item) {
             cityArr.push(item.city);
-            cityComArr.push({
+            cityServeArr.push({
               name: item.city,
               value:
                 item.year2019.month10 +
