@@ -64,8 +64,8 @@ export default {
       suppliers: true,
       shop: true,
       user: {},
-      shopInfo:false,
-      shopManage:false
+      shopInfo: false,
+      shopManage: false
     };
   },
   created() {
@@ -73,7 +73,7 @@ export default {
       method: "get",
       url: "/index/getSession"
     }).then(({ data }) => {
-      console.log("主页面的data",data);
+      console.log("主页面的data", data);
       this.user = data;
       if (!data) {
         this.$router.push("/login");
@@ -84,18 +84,18 @@ export default {
         this.shop = false;
         this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
         axios({
-                method: "get",
-                url:"/shop",
-                params:{
-                    usersId:data._id
-                }
-              }).then(({data})=>{
-                if(data.length>0){
-                  this.shopInfo=true;
-                }else{
-                  this.shopManage=true;
-                }
-              })
+          method: "get",
+          url: "/shop",
+          params: {
+            usersId: data._id
+          }
+        }).then(({ data }) => {
+          if (data.length > 0) {
+            this.shopInfo = true;
+          } else {
+            this.shopManage = true;
+          }
+        });
       } else if (data.attribute == "supplier") {
         this.suppliers = false;
         this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
@@ -123,10 +123,10 @@ export default {
   background-color: aliceblue;
   height: 595px;
 }
-.el-main{
+.el-main {
   background-color: aliceblue;
 }
-.sysTitle{
+.sysTitle {
   color: white;
 }
 </style>
