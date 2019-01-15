@@ -102,7 +102,19 @@ export default {
         }).then(({ data }) => {
           console.log(data);
           if (data.data.attribute == "supplier" && data.data.status == 1) {
-            callback();
+            axios({
+              methods: "get",
+              url: "/index/supplier",
+              params: {
+                usersId: data.data._id
+              }
+            }).then(({ data }) => {
+              if (data.length > 0) {
+                callback("该用户已经有供应公司");
+              } else {
+                callback();
+              }
+            });
             this.users = data.data;
           } else {
             callback("查无此供应商用户");

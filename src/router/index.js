@@ -25,6 +25,11 @@ import SupplierStat from '../components/manage/suppliers/supplierStat';
 // 面店管理模板
 import shopOrders from "../components/shopOrders";
 
+import shopOwner from "../components/shopOwner"
+import SubmitShopInfo from "../components/submitShopInfo"
+import commodity_management from "../components/commodity_management"
+import sales_statistics from "../components/sales_statistics"
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -38,10 +43,52 @@ export default new VueRouter({
     }, {
         path: "/register",
         component: Register
-    }, {
+    },
+ {
         path: "/manage",
         component: Manage,
         children: [{
+<<<<<<< HEAD
+            path: "/manage/supplierInfo",
+            component: SupplierInfo,
+        }, {
+            path: '/manage/supplierCom',
+            component: SupplierCom,
+        }, 
+        {
+            path: "/manage/users",
+            component: Users,
+        },
+        {
+            path: "/manage/shop",
+            component: Shop,
+        },
+        {
+            path: "/manage/petMaster",
+            component: PetMaster,
+        },
+        {
+            path: "/manage/supplier",
+            component: Supplier,
+        },
+        {
+            path:"/manage/shopOwner",
+            component:shopOwner,
+        },
+        {
+            path:"/manage/commodity_management",
+            component:commodity_management,
+        },
+        {
+            path:"/manage/submitShopInfo",
+            component:SubmitShopInfo
+        },
+        {
+            path:"/manage/sales_statistics",
+            component:sales_statistics
+        }
+    ]
+=======
                 path: "/manage/suppliers/supplierInfo",
                 component: SupplierInfo,
             },
@@ -86,5 +133,6 @@ export default new VueRouter({
                 component: shopOrders,
             }
         ]
+>>>>>>> 03ba0573b9ad4e7e842f87c941adcca0c201e610
     }]
 });
