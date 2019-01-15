@@ -7,7 +7,7 @@
         </el-form-item>
         <el-form-item label="商品列表">
           <ol>
-            <li v-for="index in order.orderCommoditys" v-bind:key="index">
+            <li v-for="index in order.orderCommoditys" v-bind:key="index.commodityCondition">
               <div>
                 <span>商品名称</span>
                 <span>{{ index.commodityName }}</span>
@@ -41,7 +41,9 @@ const { mapState } = createNamespacedHelpers("shopOrderModule");
 
 export default {
   data() {
-    return {};
+    return {
+     
+    };
   },
   computed: {
     // 取出数据渲染，可以开关列表
@@ -49,6 +51,7 @@ export default {
     inquireVisible: {
       get() {
         return this.$store.state.shopOrderModule.inquireVisible;
+        console.log("1111",this.$store.state.shopOrderModule.inquireVisible)
       },
       set(inquireVisible) {
         this.$store.commit("shopOrderModule/setInquireVisible", inquireVisible);
