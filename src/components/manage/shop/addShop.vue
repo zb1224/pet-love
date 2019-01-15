@@ -217,7 +217,19 @@ export default {
         }).then(({ data }) => {
           console.log(data);
           if (data.data.attribute == "store" && data.data.status == 1) {
-            callback();
+            axios({
+              methods: "get",
+              url: "/index/shop",
+              params: {
+                usersId: data.data._id
+              }
+            }).then(({ data }) => {
+              if (data.length > 0) {
+                callback("该用户已经有店");
+              } else {
+                callback();
+              }
+            });
             this.users = data.data;
           } else {
             callback("查无此店主用户");

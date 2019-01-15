@@ -2,10 +2,10 @@
     <div>
         <el-radio-group v-model="type" @change="changeType">
           <div class="yangshi1">
-          <div>
+          <div @click="getData1">
               <el-radio-button label="各个城市商品销量"></el-radio-button>
           </div>
-           <div>
+           <div @click="getData2">
               <el-radio-button label="各个城市服务销量"></el-radio-button>
             </div>
             </div>
@@ -74,11 +74,19 @@ export default {
   },
   methods: {
     getData1() {
+      this.type1=""
+      this.type2=""
+      let content = echarts.init(this.$refs.content);
+      content.setOption(this.comOptions, false);  
       if (this.type == "各个城市商品销量") {
         this.show();
       }
     },
     getData2() {
+      this.type1=""
+      this.type2=""
+      let content = echarts.init(this.$refs.content);
+      content.setOption(this.serveOptions, false);
       if (this.type == "各个城市服务销量") {
         this.show();
       }
@@ -564,7 +572,7 @@ export default {
     serveOptions() {
       return {
         title: {
-          text: "各个城市商品销量占比",
+          text: "各个城市服务销量占比",
           subtext: "纯属虚构",
           x: "center"
         },
