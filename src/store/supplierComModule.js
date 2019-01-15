@@ -50,7 +50,8 @@ export default {
         // },
         setProductBigImg(state, productBigImg) {
             state.supplierCom = {
-                ...state.supplierCom, productBigImg
+                ...state.supplierCom,
+                productBigImg
             }
         },
         setUsersId(state, usersId) {
@@ -61,20 +62,28 @@ export default {
         }
     },
     actions: {
-        setCommodity({ commit }, id) {
+        setCommodity({
+            commit
+        }, id) {
             axios({
                 methos: "get",
                 url: "/supplierCom/" + id
-            }).then(({ data }) => {
+            }).then(({
+                data
+            }) => {
+                // console.log("商品个体",data);
                 commit('setSupplierCom', data)
             })
         },
-        show({ state, commit }) {
+        show({
+            state,
+            commit
+        }) {
             let type = state.input.type;
             let text = state.input.text;
             let page = state.pagination.curpage;
             let rows = state.pagination.eachpage;
-            console.log("供应商ID", state.supplierId)
+            // console.log("供应商ID", state.supplierId);
             axios({
                 method: "get",
                 url: "/supplierCom",
@@ -85,29 +94,39 @@ export default {
                     type,
                     text
                 }
-            }).then(({ data }) => {
-                console.log("data是", data)
+            }).then(({
+                data
+            }) => {
+                // console.log("data是", data);
                 commit('setSupplierComs', data.rows);
                 commit('setPagination', data);
             });
         },
-        getSession({ commit, state, dispatch }) {
+        getSession({
+            commit,
+            state,
+            dispatch
+        }) {
             axios({
                 method: "get",
                 url: "/index/getSession"
-            }).then(({ data }) => {
+            }).then(({
+                data
+            }) => {
                 commit("setUsersId", data._id);
-                console.log("登录的用户信息", data)
+                // console.log("登录的用户信息", data)
                 axios({
                     method: "get",
                     url: "/suppliers",
                     params: {
                         usersId: data._id
                     }
-                }).then(({ data }) => {
+                }).then(({
+                    data
+                }) => {
                     commit("setSupplierId", data[0]._id);
-                    console.log("供应商信息", data)
-                    console.log("this.state.supplierId", state.supplierId);
+                    // console.log("供应商信息", data);
+                    // console.log("this.state.supplierId", state.supplierId);
                     dispatch('show');
                 })
             });
