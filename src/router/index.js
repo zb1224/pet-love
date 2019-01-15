@@ -13,6 +13,11 @@ import Supplier from "../components/manage/supplier"
 import SupplierInfo from "../components/supplierInfo";
 import SupplierCom from '../components/supplierCom';
 
+import shopOwner from "../components/shopOwner"
+import SubmitShopInfo from "../components/submitShopInfo"
+import commodity_management from "../components/commodity_management"
+import sales_statistics from "../components/sales_statistics"
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -26,7 +31,8 @@ export default new VueRouter({
     }, {
         path: "/register",
         component: Register
-    }, {
+    },
+ {
         path: "/manage",
         component: Manage,
         children: [{
@@ -51,6 +57,23 @@ export default new VueRouter({
         {
             path: "/manage/supplier",
             component: Supplier,
-        },]
+        },
+        {
+            path:"/manage/shopOwner",
+            component:shopOwner,
+        },
+        {
+            path:"/manage/commodity_management",
+            component:commodity_management,
+        },
+        {
+            path:"/manage/submitShopInfo",
+            component:SubmitShopInfo
+        },
+        {
+            path:"/manage/sales_statistics",
+            component:sales_statistics
+        }
+    ]
     }]
 });
