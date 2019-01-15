@@ -39,11 +39,11 @@
               <i class="el-icon-message"></i>
               <span>门店管理</span>
             </template>
-            <el-menu-item index="/manage/shop/submitShopInfo">门店申请</el-menu-item>
-            <el-menu-item index="/manage/shop/commodity_management">商品管理</el-menu-item>
-            <el-menu-item index="/manage/shop/service">服务管理</el-menu-item>
-            <el-menu-item index="/manage/shop/shopOrder">订单管理</el-menu-item>
-            <el-menu-item index="/manage/shop/sales_statistics">商品统计</el-menu-item>
+            <el-menu-item index="/manage/shop/submitShopInfo" :disabled="shopInfo">门店申请</el-menu-item>
+            <el-menu-item index="/manage/shop/commodity_management" :disabled="shopManage">商品管理</el-menu-item>
+            <el-menu-item index="/manage/shop/service" :disabled="shopManage">服务管理</el-menu-item>
+            <el-menu-item index="/manage/shop/shopOrder" :disabled="shopManage">订单管理</el-menu-item>
+            <el-menu-item index="/manage/shop/sales_statistics" :disabled="shopManage">商品统计</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -63,7 +63,9 @@ export default {
       platform: true,
       suppliers: true,
       shop: true,
-      user: {}
+      user: {},
+      shopInfo:false,
+      shopManage:false
     };
   },
   created() {
@@ -71,7 +73,7 @@ export default {
       method: "get",
       url: "/index/getSession"
     }).then(({ data }) => {
-      // console.log(data);
+      console.log("主页面的data",data);
       this.user = data;
       if (!data) {
         this.$router.push("/login");
@@ -81,6 +83,19 @@ export default {
       } else if (data.attribute == "store") {
         this.shop = false;
         this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
+        axios({
+                method: "get",
+                url:"/shop",
+                params:{
+                    usersId:data._id
+                }
+              }).then(({data})=>{
+                if(data.length>0){
+                  this.shopInfo=true;
+                }else{
+                  this.shopManage=true;
+                }
+              })
       } else if (data.attribute == "supplier") {
         this.suppliers = false;
         this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
