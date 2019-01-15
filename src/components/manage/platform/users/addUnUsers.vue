@@ -1,6 +1,6 @@
 <template>
  <div>
-     <el-button type="primary" @click="dialogVisible = true" icon="el-icon-circle-plus-outline">待审核（{{unUsers.length}}）</el-button>
+     <el-button type="primary" @click="openUnusers" icon="el-icon-circle-plus-outline">待审核（{{number}}）</el-button>
 <el-dialog
   title="待审核用户"
   :visible.sync="dialogVisible"
@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      number: 0,
       unUsers: [],
       unUsersPagination: {
         curpage: 1,
@@ -42,11 +43,28 @@ export default {
     };
   },
   mounted() {
-    this.showUnUser();
+    this.showUnUserNum();
   },
   computed: {},
   methods: {
     ...mapActions("userModules", ["showUsers"]),
+    openUnusers() {
+      this.dialogVisible = true;
+      this.showUnUser();
+    },
+    showUnUserNum() {
+      axios({
+        methods: "get",
+        url: "/users/unusers",
+        params: {
+          type: "status",
+          text: "0"
+        }
+      }).then(({ data }) => {
+        console.log("777", data);
+        this.number = data.length;
+      });
+    },
     showUnUser() {
       axios({
         methods: "get",
@@ -74,6 +92,7 @@ export default {
       }).then(({ data }) => {
         this.showUnUser();
         this.showUsers();
+        this.showUnUserNum();
       });
     },
     unpassUser(id) {
