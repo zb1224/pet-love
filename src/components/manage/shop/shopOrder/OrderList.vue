@@ -17,9 +17,9 @@
 
 <script>
 import axios from "axios";
-import { createNamespacedHelpers } from "vuex";
+import { createNamespacedHelpers} from "vuex";
 
-const { mapState, mapMutations } = createNamespacedHelpers("shopOrderModule");
+const { mapState, mapMutations,mapActions } = createNamespacedHelpers("shopOrderModule");
 export default {
   data() {
     return {};
@@ -32,13 +32,14 @@ export default {
   // 查询和修改的的设置，并把当前的订单（当前选择的那个）信息加入仓库，在后面直接调用
   methods: {
     ...mapMutations(["setUpdateVisible", "setInquireVisible", "setOrder"]),
-
+    ...mapActions(["updateinfo"]),
     inquire(index, row) {
       this.setOrder(row);
       this.setInquireVisible(true);
     },
     update(index, row) {
-      this.setOrder(row);
+      // this.setOrder(row);
+      this.updateinfo(row)
       this.setUpdateVisible(true);
     }
   }
