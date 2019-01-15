@@ -23,9 +23,9 @@ import SupplierStat from '../components/manage/suppliers/supplierStat';
 
 
 // 面店管理模板
-import commodity_management from "../components/shop/commodity_management";
-import sales_statistics from "../components/shop/sales_statistics";
-import SubmitShopInfo from "../components/shop/submitShopInfo";
+import commodity_management from "../components/manage/shop/commodity_management";
+import sales_statistics from "../components/manage/shop/sales_statistics";
+import SubmitShopInfo from "../components/manage/shop/submitShopInfo";
 import Service from "../components/manage/shop/shopService/Service.vue";
 import ShopOrder from '../components/manage/shop/shopOrder/Dingdan.vue';
 
