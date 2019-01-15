@@ -153,35 +153,6 @@ export default {
         this.$message.error("上传头像图片大小不能超过 2MB!");
       }
       return isJPG && isLt2M;
-<<<<<<< HEAD
-    },
-
-    getSession() {
-      axios({
-        method: "get",
-        url: "/index/getSession"
-      }).then(({ data }) => {
-        console.log(data);
-        if (!data.logTel) {
-          this.$router.push("/login");
-        } else if (data.logTel) {
-          console.log("1111",data.supplier);
-          if (data.supplier == undefined) {
-            this.$alert("你的信息还未完善", "消息");
-            this.user = data;
-          } else {
-            axios({
-              method: "get",
-              url: "/suppliers/" + data.supplier
-            }).then(({ data }) => {
-              this.supplier = data;
-              this.user = data;
-            });
-          }
-        }
-      });
-=======
->>>>>>> zb
     }
   },
   created() {
