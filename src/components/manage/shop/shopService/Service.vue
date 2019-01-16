@@ -21,7 +21,7 @@
     </el-table>
     <!-- 修改的对话框 -->
     <el-dialog title="修改服务" :visible.sync="dialogVisible" width="60%">
-      <el-form status-icon ref="serviceData" label-width="100px" class="demo-ruleForm">
+      <el-form  status-icon ref="serviceData" label-width="100px" class="demo-ruleForm">
         <el-form-item label="名称" prop="serviceName">
           <el-input v-model="serviceData[index].serviceName"></el-input>
         </el-form-item>
@@ -125,7 +125,9 @@ export default {
   created() {
     this.show();
   },
-
+  mounted(){
+console.log(this.serviceData)
+  },
   methods: {
       showChart(){
 
@@ -225,9 +227,12 @@ export default {
           value
         }
       }).then(({ data }) => {
-        this.serviceData = data.rows;
-        // console.log("666",this.serviceData)
-        this.pagination=data;
+        if(data.rows.length==0){
+          this.serviceData = [{}];
+        }else{
+          this.serviceData = data.rows;
+      }
+           this.pagination=data;
         
       });
     },
@@ -246,6 +251,7 @@ export default {
           price: this.serviceData[this.index].price
         }
       }).then(({ data }) => {
+        
         if (data.status == 1) {
           this.dialogVisible = false;
         }

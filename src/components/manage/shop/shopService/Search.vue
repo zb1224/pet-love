@@ -27,6 +27,7 @@
      },
      methods:{
          search:function(){
+             
              let {type,value}=this
              console.log("111",type,value)
               this.show(1,5,type,value)
