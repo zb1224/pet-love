@@ -8,7 +8,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 body,
 #root {
   height: 100%;

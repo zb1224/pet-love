@@ -60,9 +60,9 @@ import axios from "axios";
 export default {
   data() {
     return {
-      platform: false,
-      suppliers: false,
-      shop: false,
+      platform: true,
+      suppliers: true,
+      shop: true,
       shopInfo: false,
       shopManage: false,
 
@@ -75,35 +75,36 @@ export default {
       url: "/index/getSession"
     }).then(({ data }) => {
       // console.log("主页面的data", data);
-      // this.user = data;
-      // if (!data) {
-      //   this.$router.push("/login");
-      // } else if (data.attribute == "Administrators") {
-      //   this.platform = false;
-      //   this.$alert("你是平台管理员账户，只能进行平台管理", "消息");
-      // } else if (data.attribute == "store") {
-      //   this.shop = false;
-      //   this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
-      //   axios({
-      //     method: "get",
-      //     url: "/shop",
-      //     params: {
-      //       usersId: data._id
-      //     }
-      //   }).then(({ data }) => {
-      //     if (data.length > 0) {
-      //       this.shopInfo = true;
-      //     } else {
-      //       this.shopManage = true;
-      //     }
-      //   });
-      // } else if (data.attribute == "supplier") {
-      //   this.suppliers = false;
-      //   this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
-      // }
+      this.user = data;
+      if (!data) {
+        this.$router.push("/login");
+      } else if (data.attribute == "Administrators") {
+        this.platform = false;
+        this.$alert("你是平台管理员账户，只能进行平台管理", "消息");
+      } else if (data.attribute == "store") {
+        this.shop = false;
+        this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
+        axios({
+          method: "get",
+          url: "/shop",
+          params: {
+            usersId: data._id
+          }
+        }).then(({ data }) => {
+          if (data.length > 0) {
+            this.shopInfo = true;
+          } else {
+            this.shopManage = true;
+          }
+        });
+      } else if (data.attribute == "supplier") {
+        this.suppliers = false;
+        this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
+      }
     });
   },
   methods: {
+    // 退出登录
     quit() {
       axios({
         method: "get",
@@ -114,13 +115,9 @@ export default {
         this.$router.push("/login");
       });
     }
-
-    // handleSelect(key, keyPath) {
-    //   console.log("地址");
-    //   console.log(key, keyPath);
-    // }
   },
   computed: {
+    // 路由
     path() {
       // console.log(this.$route.path);
       if (this.$route.path.replace("/", "") == "ProductEdit") {

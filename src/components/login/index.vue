@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="contanier">
     <el-card class="box-login">
       <el-form :model="user" status-icon :rules="login_rules" ref="loginFrom">
         <h1>用户登录</h1>
@@ -74,8 +74,10 @@ export default {
 </script>
 
 <style scoped>
+
 .box-login {
-  width: 600px;
+  width: 500px;
   margin: auto;
+  margin-top: 200px;
 }
 </style>
