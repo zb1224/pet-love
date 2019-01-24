@@ -12,7 +12,7 @@
     <el-container>
       <el-aside width="200px">
         <el-menu :default-active="path" :router="true" width="200px">
-          <el-submenu index="1" :disabled="platform">
+          <el-submenu :disabled="platform">
             <template slot="title">
               <i class="el-icon-service"></i>
               <span>平台管理</span>
@@ -25,7 +25,7 @@
             <el-menu-item index="/manage/platfrom/saleStatistics">销量统计</el-menu-item>
             <el-menu-item index="/manage/platform/platFormMap">地图</el-menu-item>
           </el-submenu>
-          <el-submenu index="2" :disabled="suppliers">
+          <el-submenu :disabled="suppliers">
             <template slot="title">
               <i class="el-icon-menu"></i>
               <span>供应商管理</span>
@@ -34,7 +34,7 @@
             <el-menu-item index="/manage/suppliers/supplierCom">供应商货品管理</el-menu-item>
             <el-menu-item index="/manage/suppliers/supplierStat">统计</el-menu-item>
           </el-submenu>
-          <el-submenu index="3" :disabled="shop">
+          <el-submenu :disabled="shop">
             <template slot="title">
               <i class="el-icon-menu"></i>
               <span>门店管理</span>
@@ -60,9 +60,9 @@ import axios from "axios";
 export default {
   data() {
     return {
-      platform: true,
-      suppliers: true,
-      shop: true,
+      platform: false,
+      suppliers: false,
+      shop: false,
       shopInfo: false,
       shopManage: false,
 
@@ -75,32 +75,32 @@ export default {
       url: "/index/getSession"
     }).then(({ data }) => {
       // console.log("主页面的data", data);
-      this.user = data;
-      if (!data) {
-        this.$router.push("/login");
-      } else if (data.attribute == "Administrators") {
-        this.platform = false;
-        this.$alert("你是平台管理员账户，只能进行平台管理", "消息");
-      } else if (data.attribute == "store") {
-        this.shop = false;
-        this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
-        axios({
-          method: "get",
-          url: "/shop",
-          params: {
-            usersId: data._id
-          }
-        }).then(({ data }) => {
-          if (data.length > 0) {
-            this.shopInfo = true;
-          } else {
-            this.shopManage = true;
-          }
-        });
-      } else if (data.attribute == "supplier") {
-        this.suppliers = false;
-        this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
-      }
+      // this.user = data;
+      // if (!data) {
+      //   this.$router.push("/login");
+      // } else if (data.attribute == "Administrators") {
+      //   this.platform = false;
+      //   this.$alert("你是平台管理员账户，只能进行平台管理", "消息");
+      // } else if (data.attribute == "store") {
+      //   this.shop = false;
+      //   this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
+      //   axios({
+      //     method: "get",
+      //     url: "/shop",
+      //     params: {
+      //       usersId: data._id
+      //     }
+      //   }).then(({ data }) => {
+      //     if (data.length > 0) {
+      //       this.shopInfo = true;
+      //     } else {
+      //       this.shopManage = true;
+      //     }
+      //   });
+      // } else if (data.attribute == "supplier") {
+      //   this.suppliers = false;
+      //   this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
+      // }
     });
   },
   methods: {
@@ -114,10 +114,22 @@ export default {
         this.$router.push("/login");
       });
     }
+
+    // handleSelect(key, keyPath) {
+    //   console.log("地址");
+    //   console.log(key, keyPath);
+    // }
   },
   computed: {
     path() {
-      return this.$router.history.current.path;
+      console.log(this.$route.path);
+      if (this.$route.path.replace("/", "") == "ProductEdit") {
+        return this.$router.history.current.path;
+      } else if (this.$route.path.replace("/", "") == "OrderDetail") {
+        return this.$router.history.current.path;
+      } else {
+        return this.$router.history.current.path;
+      }
     }
   }
 };

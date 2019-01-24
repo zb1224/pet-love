@@ -1,14 +1,14 @@
 <template>
-    <div>
-      <div class="div">
-        <AddPetMaster></AddPetMaster>
-         <SearchPetMaster></SearchPetMaster>
-         <AddUnPetMasters></AddUnPetMasters>   
-      </div>
-         <ListPetMaster></ListPetMaster>
-         <UpdataPetMaster></UpdataPetMaster>
-         <PagePetMaster></PagePetMaster>
+  <div>
+    <div class="div">
+      <AddPetMaster></AddPetMaster>
+      <SearchPetMaster></SearchPetMaster>
+      <AddUnPetMasters></AddUnPetMasters>
     </div>
+    <ListPetMaster></ListPetMaster>
+    <UpdataPetMaster></UpdataPetMaster>
+    <PagePetMaster></PagePetMaster>
+  </div>
 </template>
 
 
@@ -26,7 +26,7 @@ export default {
     this.showPetMasters();
   },
   methods: {
-    ...mapActions("petMasterModules", ["showPetMasters"]),
+    ...mapActions("petMasterModules", ["showPetMasters"])
   },
   components: {
     AddPetMaster,
