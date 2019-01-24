@@ -1,11 +1,11 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header class="manage-head" height="150px">
       <div>
         <h1 class="sysTitle">爱宠邦宠物管理系统</h1>
-        <div>
-          <span>你好</span>
-          <el-button icon="el-icon-close">退出</el-button>
+        <div class="userInfo">
+          <el-button>{{user.Name}}</el-button>
+          <el-button @click="quit" icon="el-icon-close">退出</el-button>
         </div>
       </div>
     </el-header>
@@ -14,7 +14,7 @@
         <el-menu :default-active="path" :router="true" width="200px">
           <el-submenu index="1" :disabled="platform">
             <template slot="title">
-              <i class="el-icon-message"></i>
+              <i class="el-icon-service"></i>
               <span>平台管理</span>
             </template>
             <el-menu-item index="/manage/platform/users">用户管理</el-menu-item>
@@ -27,7 +27,7 @@
           </el-submenu>
           <el-submenu index="2" :disabled="suppliers">
             <template slot="title">
-              <i class="el-icon-message"></i>
+              <i class="el-icon-menu"></i>
               <span>供应商管理</span>
             </template>
             <el-menu-item index="/manage/suppliers/supplierInfo">供应商信息</el-menu-item>
@@ -36,7 +36,7 @@
           </el-submenu>
           <el-submenu index="3" :disabled="shop">
             <template slot="title">
-              <i class="el-icon-message"></i>
+              <i class="el-icon-menu"></i>
               <span>门店管理</span>
             </template>
             <el-menu-item index="/manage/shop/submitShopInfo" :disabled="shopInfo">门店申请</el-menu-item>
@@ -65,7 +65,9 @@ export default {
       shop: false,
       user: {},
       shopInfo: false,
-      shopManage: false
+      shopManage: false,
+
+      user: {}
     };
   },
   // created() {
@@ -111,23 +113,36 @@ export default {
 </script>
 
 <style scoped>
-.el-header {
-  background-color: turquoise;
-  color: wheat;
-  /* line-height: 60px; */
-}
-.el-submenu {
-  background-color: aliceblue;
-}
-.el-aside {
-  background-color: aliceblue;
-  height: 595px;
-}
-.el-main {
-  background-color: aliceblue;
+.manage-head {
+  background-color: skyblue;
 }
 .sysTitle {
   color: white;
+  font-size: 38px;
+  font-weight: bold;
+  margin: 0;
+}
+.userInfo {
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: silver;
+}
+
+.el-submenu {
+  background-color: aliceblue;
+}
+
+.el-aside {
+  background-color: aliceblue;
+  height: 100%;
+}
+
+.el-main {
+  background-color: aliceblue;
 }
 </style>
 

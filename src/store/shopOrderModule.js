@@ -4,7 +4,10 @@ export default {
     namespaced: true,
     state: {
         orders: [],
-        order: {},
+        order: {
+            orderContent:"",
+            orderStatus:""
+        },
         shopID: "5c32f25a3f79bff8f77b2f69",
         input: {
             type: "",
@@ -68,6 +71,16 @@ export default {
                 commit('setOrders', data.rows);
                 commit('setPagination', data);
             });
-        }
+        },
+      updateinfo({commit},data){
+        axios({
+            method: "get",
+            url: "/orders/"+data._id
+        }).then(({data}) => {
+            
+            commit('setOrder', data);
+            // commit('setPagination', data);
+        });
+      }
     }
 }
