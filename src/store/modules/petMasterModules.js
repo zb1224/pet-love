@@ -3,6 +3,7 @@ import axios from "axios"
 export default {
     namespaced: true,
     state: {
+        number: 0,
         petMasters: [],
         petMaster: {},
         updataVisible: false,
@@ -18,8 +19,8 @@ export default {
         updataPetMaster: {},
         unPetMaters: [],
         unPetMatersPagination: {
-          curpage: 1,
-          eachpage: 5
+            curpage: 1,
+            eachpage: 5
         }
     },
     getters: {
@@ -55,11 +56,14 @@ export default {
             state.petMastersPagination.eachpage = rows
         },
         setUnPetMaters(state, unPetMaters) {
-            state.unPetMaters= unPetMaters
+            state.unPetMaters = unPetMaters
         },
         setUnPetMatersPagination(state, unPetMatersPagination) {
             state.unPetMatersPagination = unPetMatersPagination
         },
+        setNumber(state, number) {
+            state.number = number
+        }
     },
     actions: {
         updataPetMasterInfo({ commit }, id) {
@@ -69,6 +73,19 @@ export default {
             }).then(({ data }) => {
                 console.log(data)
                 commit("setPetMaster", data)
+            });
+        },
+        showUnPetMastersNum({commit}) {
+            axios({
+                methods: "get",
+                url: "/petMaster/unpetMaster",
+                params: {
+                    type: "status",
+                    text: "0"
+                }
+            }).then(({ data }) => {
+                console.log("qwe", data.length)
+                commit("setNumber", data.length)
             });
         },
         showUnPetMasters({ state, commit }) {

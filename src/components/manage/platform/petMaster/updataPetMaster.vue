@@ -5,19 +5,19 @@
   :visible.sync="updataVisible"
   width="50%">
    <el-form :model="petMaster" ref="petMaster" status-icon label-width="100px">
-         <el-form-item label="电话：" prop="masterTel">
+         <el-form-item label="电话：" prop="masterTel" required>
                 <el-input v-model="petMaster.masterTel"></el-input>
             </el-form-item>
-            <el-form-item label="昵称：" prop="masterNickName">
+            <el-form-item label="昵称：" prop="masterNickName" required>
             <el-input v-model="petMaster.masterNickName"></el-input>
         </el-form-item>
-        <el-form-item label="真实姓名：" prop="truthName">
+        <el-form-item label="真实姓名：" prop="truthName" required>
              <el-input v-model="petMaster.truthName"></el-input>
         </el-form-item>
-        <el-form-item label="会员卡：" prop="VIPCard">
+        <el-form-item label="会员卡：" prop="VIPCard" required>
             <el-input v-model="petMaster.VIPCard"></el-input>
         </el-form-item>
-        <el-form-item label="头像：" prop="masterPhoto">
+        <el-form-item label="头像：" prop="masterPhoto" required>
       <el-upload
             class="avatar-uploader"
             action="/index/upload"
@@ -28,13 +28,13 @@
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
         </el-form-item>
-        <el-form-item label="地址：" prop="masterAddr">
+        <el-form-item label="地址：" prop="masterAddr" required>
                <el-input v-model="petMaster.masterAddr"></el-input>
         </el-form-item>
-        <el-form-item label="区域：" prop="region">
+        <el-form-item label="区域：" prop="region" required>
             <el-input v-model="petMaster.region"></el-input>
         </el-form-item>
-        <el-form-item label="积分：" prop="integral">
+        <el-form-item label="积分：" prop="integral" required>
             <el-input v-model="petMaster.integral"></el-input>
         </el-form-item>
         <el-form-item

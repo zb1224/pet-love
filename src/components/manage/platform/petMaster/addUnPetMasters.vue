@@ -1,6 +1,6 @@
 <template>
  <div>
-     <el-button type="primary" @click="dialogVisible = true" icon="el-icon-circle-plus-outline">黑名单（{{unPetMaters.length}}）</el-button>
+     <el-button type="primary" @click="openUnPetMaster" icon="el-icon-circle-plus-outline">黑名单（{{number}}）</el-button>
 <el-dialog
   title="黑名单用户"
   :visible.sync="dialogVisible"
@@ -13,7 +13,6 @@
    <el-table-column prop="masterAddr" label="地址"></el-table-column>
     <el-table-column prop="region" label="区域"></el-table-column>
     <el-table-column prop="integral" label="积分"></el-table-column>
-    <el-table-column prop="pets" label="宠物"></el-table-column>
     <el-table-column fixed="right" label="操作" width="160">
       <template slot-scope="scope">
         <el-button type="info" size="small" @click="passPetMasters(scope.row)">洗 白</el-button>
@@ -39,13 +38,17 @@ export default {
     };
   },
   mounted() {
-    this.showUnPetMasters();
+    this.showUnPetMastersNum();
   },
   computed: {
-    ...mapState("petMasterModules", ["unPetMaters", "unPetMatersPagination"])
+    ...mapState("petMasterModules", ["unPetMaters", "unPetMatersPagination","number"])
   },
   methods: {
-    ...mapActions("petMasterModules", ["showPetMasters", "showUnPetMasters"]),
+    ...mapActions("petMasterModules", ["showPetMasters", "showUnPetMasters","showUnPetMastersNum"]),
+    openUnPetMaster(){
+        this.dialogVisible = true
+        this.showUnPetMasters();
+    },
     passPetMasters(data) {
       axios({
         method: "put",
@@ -57,6 +60,7 @@ export default {
       }).then(({ data }) => {
         this.showUnPetMasters();
         this.showPetMasters();
+        this.showUnPetMastersNum();
       });
     },
     unPassPetMasters(id) {
@@ -65,6 +69,7 @@ export default {
         url: "/petMaster/" + id
       }).then(({ data }) => {
         this.showUnPetMasters();
+        this.showUnPetMastersNum();
       });
     },
     statusFormatter(row, column) {

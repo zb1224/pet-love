@@ -2,7 +2,7 @@
  <div>
      <el-button type="primary" @click="dialogVisible = true" icon="el-icon-circle-plus-outline">增加</el-button>
 <el-dialog
-  title="增加店铺"
+  title="增加供应商"
   :visible.sync="dialogVisible"
   width="50%">
    <el-form :model="users" status-icon :rules="rules" ref="users" label-width="150px">
@@ -11,25 +11,26 @@
                 <el-tooltip effect="dark" content="你输入的手机号对应这位供应商" placement="right-start" class="item">
                   <el-button>供应商名：{{users.Name}}</el-button>
                 </el-tooltip>
-            </el-form-item>
+             <span @click="jumpReturn">还没有供应商用户？</span>   
+             </el-form-item>
     </el-form>
    <el-form :model="addSupplierForm" status-icon ref="addSupplierForm" label-width="150px">
-        <el-form-item label="名称：" prop="supName">
+        <el-form-item label="名称：" prop="supName" required>
                 <el-input v-model="addSupplierForm.supName"></el-input>
       </el-form-item>
-     <el-form-item label="地址：" prop="supAddr">
+     <el-form-item label="地址：" prop="supAddr" required>
                 <el-input v-model="addSupplierForm.supAddr"></el-input>
       </el-form-item>
-      <el-form-item label="电话" prop="supTel">
+      <el-form-item label="电话" prop="supTel" required>
       <el-input v-model="addSupplierForm.supTel"></el-input>
         </el-form-item>
-        <el-form-item label="网站：" prop="supInternet">
+        <el-form-item label="网站：" prop="supInternet" required>
          <el-input v-model="addSupplierForm.supInternet"></el-input>
         </el-form-item>
-        <el-form-item label="营业执照号：" prop="supLicense">
+        <el-form-item label="营业执照号：" prop="supLicense" required>
             <el-input v-model="addSupplierForm.supLicense"></el-input>
         </el-form-item>
-        <el-form-item label="照片：" prop="supImg">
+        <el-form-item label="照片：" prop="supImg" required>
            <el-upload
             class="avatar-uploader"
             action="/index/upload"
@@ -40,7 +41,7 @@
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
         </el-form-item>
-        <el-form-item label="备注：" prop="supRemarks">
+        <el-form-item label="备注：" prop="supRemarks" required>
               <el-input type="textarea" v-model="addSupplierForm.supRemarks"></el-input>
         </el-form-item>
 </el-form>
@@ -88,6 +89,9 @@ export default {
   },
   methods: {
     ...mapActions("supplierModules", ["showSuppliers"]),
+    jumpReturn() {
+      this.$router.push({ name: "users", params: { type: "supplier" } });
+    },
     imageSuccess(res, file) {
       this.addSupplierForm.supImg = "/upload/" + res;
     },

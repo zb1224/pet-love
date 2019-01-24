@@ -60,48 +60,48 @@ import axios from "axios";
 export default {
   data() {
     return {
-      platform: true,
-      suppliers: true,
-      shop: true,
+      platform: false,
+      suppliers: false,
+      shop: false,
       user: {},
       shopInfo: false,
       shopManage: false
     };
   },
-  created() {
-    axios({
-      method: "get",
-      url: "/index/getSession"
-    }).then(({ data }) => {
-      console.log("主页面的data", data);
-      this.user = data;
-      if (!data) {
-        this.$router.push("/login");
-      } else if (data.attribute == "Administrators") {
-        this.platform = false;
-        this.$alert("你是平台管理员账户，只能进行平台管理", "消息");
-      } else if (data.attribute == "store") {
-        this.shop = false;
-        this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
-        axios({
-          method: "get",
-          url: "/shop",
-          params: {
-            usersId: data._id
-          }
-        }).then(({ data }) => {
-          if (data.length > 0) {
-            this.shopInfo = true;
-          } else {
-            this.shopManage = true;
-          }
-        });
-      } else if (data.attribute == "supplier") {
-        this.suppliers = false;
-        this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
-      }
-    });
-  },
+  // created() {
+  //   axios({
+  //     method: "get",
+  //     url: "/index/getSession"
+  //   }).then(({ data }) => {
+  //     console.log("主页面的data", data);
+  //     this.user = data;
+  //     if (!data) {
+  //       this.$router.push("/login");
+  //     } else if (data.attribute == "Administrators") {
+  //       this.platform = false;
+  //       this.$alert("你是平台管理员账户，只能进行平台管理", "消息");
+  //     } else if (data.attribute == "store") {
+  //       this.shop = false;
+  //       this.$alert("你是商店管理员账户，只能进行商店管理", "消息");
+  //       axios({
+  //         method: "get",
+  //         url: "/shop",
+  //         params: {
+  //           usersId: data._id
+  //         }
+  //       }).then(({ data }) => {
+  //         if (data.length > 0) {
+  //           this.shopInfo = true;
+  //         } else {
+  //           this.shopManage = true;
+  //         }
+  //       });
+  //     } else if (data.attribute == "supplier") {
+  //       this.suppliers = false;
+  //       this.$alert("你是供应商管理员账户，只能进行供应商管理", "消息");
+  //     }
+  //   });
+  // },
   computed: {
     path() {
       return this.$router.history.current.path;

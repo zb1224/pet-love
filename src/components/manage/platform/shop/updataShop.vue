@@ -12,13 +12,13 @@
                 </el-tooltip>
                 <el-button @click="bool = false">店面易主</el-button>
             </el-form-item>
-         <el-form-item label="店名：" prop="shopName" label-width="150px">
+         <el-form-item label="店名：" prop="shopName" label-width="150px" required>
                 <el-input v-model="shop.shopName"></el-input>
             </el-form-item>
-            <el-form-item label="营业执照号：" prop="LicenseNumber" label-width="150px">
+            <el-form-item label="营业执照号：" prop="LicenseNumber" label-width="150px" required>
             <el-input v-model="shop.LicenseNumber"></el-input>
         </el-form-item>
-        <el-form-item label="营业执照照片：" prop="LicenseiImg" label-width="150px">
+        <el-form-item label="营业执照照片：" prop="LicenseiImg" label-width="150px" required>
            <el-upload
             class="avatar-uploader"
             action="/index/upload"
@@ -29,27 +29,23 @@
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
         </el-form-item>
-        <el-form-item label="地址：" prop="addr" label-width="150px">
-            <el-input v-model="shop.addr"></el-input>
-        </el-form-item>
-        <el-form-item label="坐标：" prop="Location" label-width="150px">
-            纬度：<el-input v-model="shop.Location.longitude"></el-input>
-            经度：<el-input v-model="shop.Location.latitude"></el-input>
-        </el-form-item>
-        <el-form-item label="城市：" prop="city" label-width="150px">
+        <el-form-item label="城市：" prop="city" label-width="150px" required>
              <el-cascader
     expand-trigger="hover"
     :options="citys"
     v-model="shop.city">
   </el-cascader>
         </el-form-item>
-        <el-form-item label="法人：" prop="legalPerson" label-width="150px">
+        <el-form-item label="地址：" prop="addr" label-width="150px" required>
+            <el-input v-model="shop.addr"></el-input>
+        </el-form-item>
+        <el-form-item label="法人：" prop="legalPerson" label-width="150px" required>
             <el-input v-model="shop.legalPerson"></el-input>
         </el-form-item>
-        <el-form-item label="电话：" prop="Tel" label-width="150px">
+        <el-form-item label="电话：" prop="Tel" label-width="150px" required>
             <el-input v-model="shop.Tel"></el-input>
         </el-form-item>
-        <el-form-item label="店面图片：" prop="indexImg" label-width="150px">
+        <el-form-item label="店面图片：" prop="indexImg" label-width="150px" required>
           <el-upload
             class="avatar-uploader"
             action="/index/upload"
@@ -60,10 +56,10 @@
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
         </el-form-item>
-        <el-form-item label="特色：" prop="characteristic" label-width="150px">
+        <el-form-item label="特色：" prop="characteristic" label-width="150px" required>
             <el-input v-model="shop.characteristic"></el-input>
         </el-form-item>
-        <el-form-item label="VIP等级：" prop="VIPLeve" label-width="150px">
+        <el-form-item label="VIP等级：" prop="VIPLeve" label-width="150px" required>
            <el-select v-model="shop.VIPLeve" placeholder="请选择">
       <el-option label="1级" value="1"></el-option>
       <el-option label="2级" value="2"></el-option>
@@ -73,7 +69,7 @@
       <el-option label="无" value="0"></el-option>
     </el-select>
         </el-form-item>
-        <el-form-item label="佣金：" prop="Commission" label-width="150px">
+        <el-form-item label="佣金：" prop="Commission" label-width="150px" required>
             <el-input v-model="shop.Commission"></el-input>
         </el-form-item>
         <el-form-item
@@ -187,7 +183,6 @@ export default {
   methods: {
     ...mapActions("shopModules", ["showShops","showUnShops"]),
     havePhone(rules, value, callback) {
-      console.log(value);
       if (value) {
         axios({
           methods: "get",
@@ -196,9 +191,20 @@ export default {
             logTel: value
           }
         }).then(({ data }) => {
-          console.log(data);
           if (data.data.attribute == "store" && data.data.status == 1) {
-            callback();
+             axios({
+              methods: "get",
+              url: "/index/shop",
+              params: {
+                usersId: data.data._id
+              }
+            }).then(({ data }) => {
+              if (data.length > 0) {
+                callback("该用户已经有店");
+              } else {
+                callback();
+              }
+            });
             this.$store.commit("shopModules/setShopUsers", data.data);
           } else {
             callback("查无此店主用户");
@@ -230,7 +236,6 @@ export default {
       console.log(this.shop.city);
       this.$refs[formName].validate(valid => {
         if (valid) {
-          console.log("zhuangtai", this.bool == true ? "1" : "0");
           axios({
             method: "put",
             url: "/shop/" + this.shop._id,
