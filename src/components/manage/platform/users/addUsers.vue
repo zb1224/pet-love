@@ -74,6 +74,16 @@ export default {
       }
     };
   },
+  mounted() {
+    if (this.$route.params.type) {
+      this.dialogVisible = true;
+      if (this.$route.params.type == "supplier") {
+        this.addUserFrom.attribute = "supplier";
+      } else if (this.$route.params.type == "store") {
+        this.addUserFrom.attribute = "store";
+      }
+    }
+  },
   methods: {
     ...mapActions("userModules", ["showUsers"]),
     resetForm(formName) {

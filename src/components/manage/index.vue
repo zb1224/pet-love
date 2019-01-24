@@ -122,7 +122,7 @@ export default {
   },
   computed: {
     path() {
-      console.log(this.$route.path);
+      // console.log(this.$route.path);
       if (this.$route.path.replace("/", "") == "ProductEdit") {
         return this.$router.history.current.path;
       } else if (this.$route.path.replace("/", "") == "OrderDetail") {

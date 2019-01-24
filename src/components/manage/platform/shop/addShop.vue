@@ -11,16 +11,17 @@
                 <el-tooltip effect="dark" content="你输入的手机号对应这位店主" placement="right-start" class="item">
                   <el-button>店主名：{{users.Name}}</el-button>
                 </el-tooltip>
+                <span @click="jumpReturn">还没有店主用户？</span> 
             </el-form-item>
     </el-form>
    <el-form :model="addShopFrom" status-icon ref="addShopFrom" label-width="150px">
-     <el-form-item label="店名：" prop="shopName">
+     <el-form-item label="店名：" prop="shopName" required>
                 <el-input v-model="addShopFrom.shopName"></el-input>
             </el-form-item>
-            <el-form-item label="营业执照号：" prop="LicenseNumber">
+            <el-form-item label="营业执照号：" prop="LicenseNumber" required>
             <el-input v-model="addShopFrom.LicenseNumber"></el-input>
         </el-form-item>
-        <el-form-item label="营业执照照片：" prop="LicenseiImg">
+        <el-form-item label="营业执照照片：" prop="LicenseiImg" required>
            <el-upload
             class="avatar-uploader"
             action="/index/upload"
@@ -31,27 +32,23 @@
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
         </el-form-item>
-        <el-form-item label="地址：" prop="addr">
-            <el-input v-model="addShopFrom.addr"></el-input>
-        </el-form-item>
-        <el-form-item label="坐标：" prop="Location">
-            纬度：<el-input v-model="addShopFrom.Location.longitude"></el-input>
-            经度：<el-input v-model="addShopFrom.Location.latitude"></el-input>
-        </el-form-item>
-        <el-form-item label="城市：" prop="city">
+        <el-form-item label="城市：" prop="city" required>
              <el-cascader
     expand-trigger="hover"
     :options="citys"
     v-model="addShopFrom.city">
   </el-cascader>
         </el-form-item>
-        <el-form-item label="法人：" prop="legalPerson">
+        <el-form-item label="地址：" prop="addr" required>
+            <el-input v-model="addShopFrom.addr"></el-input>
+        </el-form-item>
+        <el-form-item label="法人：" prop="legalPerson" required>
             <el-input v-model="addShopFrom.legalPerson"></el-input>
         </el-form-item>
-        <el-form-item label="电话：" prop="Tel">
+        <el-form-item label="电话：" prop="Tel" required>
             <el-input v-model="addShopFrom.Tel"></el-input>
         </el-form-item>
-        <el-form-item label="店面图片：" prop="indexImg">
+        <el-form-item label="店面图片：" prop="indexImg" required>
           <el-upload
             class="avatar-uploader"
             action="/index/upload"
@@ -62,10 +59,10 @@
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 </el-upload>
         </el-form-item>
-        <el-form-item label="特色：" prop="characteristic">
+        <el-form-item label="特色：" prop="characteristic" required>
             <el-input v-model="addShopFrom.characteristic"></el-input>
         </el-form-item>
-        <el-form-item label="VIP等级：" prop="VIPLeve">
+        <el-form-item label="VIP等级：" prop="VIPLeve" required>
            <el-select v-model="addShopFrom.VIPLeve" placeholder="请选择">
       <el-option label="VIP1" value="1"></el-option>
       <el-option label="VIP2" value="2"></el-option>
@@ -75,7 +72,7 @@
       <el-option label="无" value="0"></el-option>
     </el-select>
         </el-form-item>
-        <el-form-item label="佣金：" prop="Commission">
+        <el-form-item label="佣金：" prop="Commission" required>
             <el-input v-model="addShopFrom.Commission"></el-input>
         </el-form-item>
   <el-form-item
@@ -134,10 +131,6 @@ export default {
         LicenseNumber: "",
         LicenseiImg: "",
         addr: "",
-        Location: {
-          longitude: "",
-          latitude: ""
-        },
         city: [],
         legalPerson: "",
         Tel: "",
@@ -200,6 +193,9 @@ export default {
   },
   methods: {
     ...mapActions("shopModules", ["showShops"]),
+    jumpReturn() {
+      this.$router.push({ name: "users", params: { type: "store" } });
+    },
     imageSuccess1(res, file) {
       this.addShopFrom.LicenseiImg = "/upload/" + res;
     },
@@ -215,7 +211,6 @@ export default {
             logTel: value
           }
         }).then(({ data }) => {
-          console.log(data);
           if (data.data.attribute == "store" && data.data.status == 1) {
             axios({
               methods: "get",

@@ -64,10 +64,12 @@ export default new VueRouter({
                 },
                 {
                     path: "/manage/platform/users",
+                    name:"users",
                     component: Users,
                 },
                 {
                     path: "/manage/platform/shop",
+                    name:"shop",
                     component: Shop,
                 },
                 {
@@ -76,6 +78,7 @@ export default new VueRouter({
                 },
                 {
                     path: "/manage/platform/supplier",
+                    name:"supplier",
                     component: Supplier,
                 },
                 {

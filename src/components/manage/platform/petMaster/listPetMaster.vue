@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     ...mapActions("petMasterModules", ["updataPetMasterInfo"]),
-    ...mapActions("petMasterModules", ["showPetMasters", "showUnPetMasters"]),
+    ...mapActions("petMasterModules", ["showPetMasters", "showUnPetMasters","showUnPetMastersNum"]),
     ...mapMutations("petMasterModules", ["setVisible"]),
     updataPetMaster(id) {
       this.updataPetMasterInfo(id);
@@ -98,6 +98,7 @@ export default {
       }).then(({ data }) => {
         this.showPetMasters();
         this.showUnPetMasters();
+        this.showUnPetMastersNum();
       });
     },
     statusFormatter(row, column) {
