@@ -151,5 +151,6 @@ export default {
 .box-register {
   width: 600px;
   margin: auto;
+  margin-top: 100px;
 }
 </style>

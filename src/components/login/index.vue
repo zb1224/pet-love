@@ -78,6 +78,6 @@ export default {
 .box-login {
   width: 500px;
   margin: auto;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 </style>

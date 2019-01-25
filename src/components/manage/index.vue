@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="container">
     <el-header class="manage-head" height="150px">
       <div>
         <h1 class="sysTitle">爱宠邦宠物管理系统</h1>
@@ -63,6 +63,7 @@ export default {
       platform: true,
       suppliers: true,
       shop: true,
+
       shopInfo: false,
       shopManage: false,
 
